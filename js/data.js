@@ -1,5 +1,5 @@
 // Beszoptak.hu - kategorizált szereplők adatai
-// kategoria: "sitt" | "elozetes" | "visszafizetes"
+// kategoria: "sitt" | "elozetes" | "felkeszul" | "kapta" | "visszafizetes"
 // fokategoria: "maganszemely" | "kozeleti" | "ceg"
 const ADATOK = {
   forras: "https://github.com/ferkomes/beszoptak.hu",
@@ -370,7 +370,7 @@ const ADATOK = {
       nev: "Varga-Bajusz Veronika",
       tipus: "Volt államtitkár (KIM) – felsőoktatás, szak- és felnőttképzés, fiatalok",
       fokategoria: "kozeleti",
-      kepek: [],
+      kepek: ["images/varga-bajusz-veronika.jpg"],
       visszafizetett: null,
       visszafizetett_szoveg: "Vizsgálat alatt",
       kapcsolatok: [
@@ -542,6 +542,87 @@ const ADATOK = {
       ],
       indok: "2026 júliusában terrorcselekmény elkövetésével fenyegetés gyanújával hallgatták ki és bilincsben vitték be, miután egy videóban Orbán Viktor esetleges elviteléről és kiszabadításáról beszélt. A Nemzeti Nyomozó Iroda október 16-án bizonyítottság hiányában megszüntette ellene a nyomozást; az ügyészség a feljelentő panaszát is elutasította.",
       kategoriak: ["felkeszul"]
+    },
+    {
+      id: "toth-gabi",
+      nev: "Tóth Gabi",
+      tipus: "Énekesnő, előadóművész",
+      fokategoria: "maganszemely",
+      kepek: ["images/toth-gabi.jpg"],
+      visszafizetett: null,
+      osszeg_cimke: "Kapott összeg",
+      visszafizetett_szoveg: "5 000 000 Ft + cége 9 000 000 Ft",
+      kapcsolatok: [
+        { nev: "Tóth Gabi", szerep: "pályázó magánszemély", kepek: ["images/toth-gabi-kis.jpg"] },
+        { nev: "Tóth Gabi és párja közös cége", szerep: "a 9 milliós támogatás kedvezményezettje", kepek: [] }
+      ],
+      indok: "A Fidesz kampányában fellépő előadóművészek között ő is az NKA kiemelt keretéből kapott: magánszemélyként 5 milliót, a párjával közös cégén keresztül további 9 milliót. Egyike a legtöbbet emlegetett kedvezményezetteknek, pénzt eddig nem adott vissza.",
+      kategoriak: ["kapta"]
+    },
+    {
+      id: "dopeman",
+      nev: "Dopeman (Papp Máté)",
+      tipus: "Rapper, előadóművész",
+      fokategoria: "maganszemely",
+      kepek: ["images/dopeman.jpg"],
+      visszafizetett: null,
+      osszeg_cimke: "Kapott összeg",
+      visszafizetett_szoveg: "5 000 000 Ft",
+      kapcsolatok: [
+        { nev: "Dopeman", szerep: "pályázó", kepek: ["images/dopeman-kis.jpg"] },
+        { nev: "Hankó Balázs", szerep: "a kereteket osztó volt miniszter – letartóztatásban", kepek: ["images/hanko-balazs-kis.jpg"] }
+      ],
+      indok: "Könnyűzenei támogatásként 5 millió forintot kapott az NKA ideiglenes kollégiumi keretéből. Visszafizetni eddig nem fizetett, a NAV nyomozásba egyelőre nem vonták be.",
+      kategoriak: ["kapta"]
+    },
+    {
+      id: "deak-bill-gyula",
+      nev: "Deák Bill Gyula",
+      tipus: "Énekes, előadóművész (Kossuth-díjas)",
+      fokategoria: "maganszemely",
+      kepek: ["images/deak-bill-gyula.jpg"],
+      visszafizetett: null,
+      osszeg_cimke: "Kapott összeg",
+      visszafizetett_szoveg: "100 000 000 Ft",
+      kapcsolatok: [
+        { nev: "Deák Bill Gyula", szerep: "kedvezményezett", kepek: ["images/deak-bill-gyula-kis.jpg"] },
+        { nev: "Balásy Gyula", szerep: "a cégháló középpontjában – cégeit átadta az államnak", kepek: [] }
+      ],
+      indok: "A „legenda nemzeti turné” elnevezésű projekt kapott 100 millió forintot. Az összeg a Balásy Gyula érdekeltségébe tartozó cégeken keresztül csorgott, a NAV a turné számláit is vizsgálja; a pénzt eddig nem adta vissza.",
+      kategoriak: ["kapta"]
+    },
+    {
+      id: "pataky-attila",
+      nev: "Pataky Attila és cége",
+      tipus: "Énekes, előadóművész / vállalkozás",
+      fokategoria: "maganszemely",
+      kepek: ["images/pataky-attila.jpg"],
+      visszafizetett: null,
+      osszeg_cimke: "Kapott összeg",
+      visszafizetett_szoveg: "150 000 000 Ft (cégen keresztül)",
+      kapcsolatok: [
+        { nev: "Pataky Attila", szerep: "előadóművész, a cége tulajdonosa", kepek: ["images/pataky-attila-kis.jpg"] },
+        { nev: "Mága Zoltán hivatalos fotósának cége", szerep: "szintén kedvezményezett – 500 millióval", kepek: [] }
+      ],
+      indok: "Az előadó érdekeltségébe tartozó cég 150 millió forintos támogatást kapott az NKA-tól. Az összeg nagyságrendje a közvéleményben a leginkább kifogásolt tételek közé tartozik; visszafizetés nem történt.",
+      kategoriak: ["kapta"]
+    },
+    {
+      id: "maga-foto-ceg",
+      nev: "Mága Zoltán hivatalos fotósának cége",
+      tipus: "Cég (a fotós neve nem nyilvános)",
+      fokategoria: "ceg",
+      kepek: [],
+      logo: { betu: "MF", szin: "#7c3aed", szoveg: "Mága Zoltán hivatalos fotósának cége" },
+      visszafizetett: null,
+      osszeg_cimke: "Kapott összeg",
+      visszafizetett_szoveg: "500 000 000 Ft",
+      kapcsolatok: [
+        { nev: "Mága Zoltán", szerep: "hegedűművész, aki a fotósa fellépésein kíséri", kepek: ["images/maga-zoltan-kis.jpg"] },
+        { nev: "Balásy Gyula", szerep: "a céghálóban szereplő rendezvényszervező", kepek: [] }
+      ],
+      indok: "Fél milliárd forintot kapott az NKA-tól egy olyan cég, amely Mága Zoltán hivatalos fotósának a nevén volt bejegyezve – a támogatás célja „kulturális tartalomgyártás” volt. Az összeg a Balásy-birodalomhoz köthető számlázási lánc részeként jelent meg; a pénz nem került vissza.",
+      kategoriak: ["kapta"]
     }
   ]
 };
@@ -550,6 +631,7 @@ const KATEGORIAK = {
   sitt: { nev: "Sittre került", leiras: "Elítélés / végrehajtás", szin: "#dc2626", emoji: "⛓️" },
   elozetes: { nev: "Előzetesben / őrizetben", leiras: "Gyanúsítottként őrizetbe véve, letartóztatásban", szin: "#d97706", emoji: "🚔" },
   felkeszul: { nev: "Eljárás folyik", leiras: "Akik ellen már folyik az eljárás, de (még) nincsenek előzetesben", szin: "#8b5cf6", emoji: "⚖️" },
+  kapta: { nev: "Kapta a pénzt", leiras: "Kedvezményezett – a pénz nála landolt, egyelőre nem adta vissza", szin: "#eab308", emoji: "💰" },
   visszafizetes: { nev: "Visszaadta a pénzt", leiras: "Önként vagy felszólításra visszautalt", szin: "#059669", emoji: "💸" }
 };
 

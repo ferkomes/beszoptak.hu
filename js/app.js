@@ -4,11 +4,21 @@
   const szuroGomb = document.querySelectorAll(".szuro");
   const keresesMezo = document.getElementById("kereses");
 
-  // szures: { tipus: "mind" | "kat" | "fokat", ertek: string }
-  let szures = { tipus: "mind", ertek: "mind" };
+  // Állapot: több címke egyszerre (OR), + főkategória + keresés
+  let kivalasztottKategoriak = [];
+  let aktivFokat = null;
   let keresesSzoveg = "";
 
   const SZINEK_PERSONA = ["#334e68", "#3e5c76", "#2f4858", "#486581", "#527d95", "#2c5282", "#3d5a80", "#4a5568"];
+
+  function normalizal(szoveg) {
+    return (szoveg || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/ő/g, "o")
+      .replace(/ű/g, "u");
+  }
 
   function monogramSzin(nev) {
     let sum = 0;
@@ -63,45 +73,59 @@
     const ertek = bej.visszafizetett != null ? formatOsszeg(bej.visszafizetett) : bej.visszafizetett_szoveg;
     const szoveges = bej.visszafizetett == null;
 
-    return '<article class="kartya" data-kat="' + bej.kategoriak.join(" ") + '" data-fokat="' + bej.fokategoria + '" ' +
-      'data-kereses="' + (bej.nev + " " + bej.tipus + " " + bej.kapcsolatok.map(function (k) { return k.nev; }).join(" ")).toLowerCase() + '">' +
+    return '<article class="kartya" data-kat="' + bej.kategoriak.join(" ") + '" data-fokat="' + bej.fokategoria + '">' +
       '<div class="kartya-fej">' + keplet(bej.nev, bej.kepek, bej.logo) +
       '<div class="kartya-cim"><h2>' + bej.nev + '</h2><div class="tipus">' + bej.tipus + "</div></div></div>" +
       '<div class="kategoriak">' + bajszok + "</div>" +
-      '<div class="osszeg-sor"><span class="cimke">Visszafizetve</span><span class="ertek' + (szoveges ? " szoveg-ertek" : "") + '">' + ertek + "</span></div>" +
+      '<div class="osszeg-sor"><span class="cimke">' + (bej.osszeg_cimke || "Visszafizetve") + '</span><span class="ertek' + (szoveges ? " szoveg-ertek" : "") + '">' + ertek + "</span></div>" +
       '<div class="test">' +
       '<div class="kapcsolatok"><div class="reszlecim">Kapcsolódó kulcsemberek</div><div class="kapcsolat-lista">' + kapcsolatok + "</div></div>" +
       '<div class="indok"><div class="reszlecim">Jogcím / indok</div><p class="indok-szoveg">' + bej.indok + "</p></div>" +
       "</div></article>";
   }
 
-  function szuresRendben(bej, sz) {
-    if (sz.tipus === "mind") return true;
-    if (sz.tipus === "kat") return bej.kategoriak.indexOf(sz.ertek) !== -1;
-    if (sz.tipus === "fokat") return bej.fokategoria === sz.ertek;
-    return true;
+  function keresesiMezoSzoveg(bej) {
+    return normalizal(
+      bej.nev + " " + bej.tipus + " " + bej.indok + " " +
+      bej.kapcsolatok.map(function (k) { return k.nev + " " + k.szerep; }).join(" ")
+    );
   }
 
   function szur() {
     const lista = ADATOK.bejegyzesek.filter(function (b) {
-      const szurRendben = szuresRendben(b, szures);
-      const keresRendben = !keresesSzoveg ||
-        (b.nev + " " + b.tipus + " " + b.indok + " " + b.kapcsolatok.map(function (k) { return k.nev + " " + k.szerep; }).join(" "))
-          .toLowerCase().indexOf(keresSzoveg) !== -1;
-      return szurRendben && keresRendben;
+      const katRendben = kivalasztottKategoriak.length === 0 ||
+        b.kategoriak.some(function (k) { return kivalasztottKategoriak.indexOf(k) !== -1; });
+      const fokatRendben = !aktivFokat || b.fokategoria === aktivFokat;
+      const keresRendben = !keresesSzoveg || keresesiMezoSzoveg(b).indexOf(kereseszovegNormalize(keresesSzoveg)) !== -1;
+      return katRendben && fokatRendben && keresRendben;
     });
 
     galeria.innerHTML = lista.length
       ? lista.map(kartyaHtml).join("")
       : '<p class="ures-uzenet">Nincs találat erre a szűrésre.</p>';
 
-    szuroGomb.forEach(function (g) {
-      const aktiv = szures.tipus === "kat" && g.dataset.kat === szures.ertek;
+    szinkronizal();
+  }
+
+  function kereseszovegNormalize(sz) {
+    return normalizal(sz);
+  }
+
+  function szinkronizal() {
+    document.querySelectorAll(".szuro[data-kat]").forEach(function (g) {
+      const kat = g.dataset.kat;
+      const aktiv = kat === "mind"
+        ? kivalasztottKategoriak.length === 0 && !aktivFokat
+        : kivalasztottKategoriak.indexOf(kat) !== -1;
       g.classList.toggle("aktiv", aktiv);
     });
     document.querySelectorAll(".stat-doboz[data-szures]").forEach(function (d) {
-      const aktiv = (d.dataset.szuresTipus === "mind" && szures.tipus === "mind") ||
-        (d.dataset.szuresTipus === szures.tipus && d.dataset.szures === szures.ertek);
+      const tipus = d.dataset.szuresTipus;
+      const ertek = d.dataset.szures;
+      let aktiv = false;
+      if (tipus === "mind") aktiv = kivalasztottKategoriak.length === 0 && !aktivFokat;
+      else if (tipus === "kat") aktiv = kivalasztottKategoriak.indexOf(ertek) !== -1;
+      else if (tipus === "fokat") aktiv = aktivFokat === ertek;
       d.classList.toggle("aktiv", aktiv);
     });
   }
@@ -124,8 +148,9 @@
     const milliard = osszesen / 1e9;
 
     const fokatNevek = {};
-    const katNevek = { sitt: [], elozetes: [], visszafizetes: [] };
+    const katNevek = {};
     Object.keys(FOKATEGORIAK).forEach(function (k) { fokatNevek[k] = []; });
+    Object.keys(KATEGORIAK).forEach(function (k) { katNevek[k] = []; });
     ADATOK.bejegyzesek.forEach(function (b) {
       fokatNevek[b.fokategoria].push(b);
       b.kategoriak.forEach(function (k) { katNevek[k].push(b); });
@@ -152,28 +177,42 @@
 
     statisztika.querySelectorAll(".stat-doboz[data-szures]").forEach(function (doboz) {
       doboz.addEventListener("click", function () {
-        const ujTipus = doboz.dataset.szuresTipus;
-        const ujErtek = doboz.dataset.szures;
-        if (szures.tipus === ujTipus && szures.ertek === ujErtek) {
-          szures = { tipus: "mind", ertek: "mind" };
-        } else {
-          szures = { tipus: ujTipus, ertek: ujErtek };
+        const tipus = doboz.dataset.szuresTipus;
+        const ertek = doboz.dataset.szures;
+        if (tipus === "mind") {
+          kivalasztottKategoriak = [];
+          aktivFokat = null;
+        } else if (tipus === "kat") {
+          kapcsoloKat(ertek);
+        } else if (tipus === "fokat") {
+          aktivFokat = aktivFokat === ertek ? null : ertek;
         }
         szur();
-        document.querySelector(".szurok").scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
   }
 
+  function kapcsoloKat(kat) {
+    const i = kivalasztottKategoriak.indexOf(kat);
+    if (i === -1) kivalasztottKategoriak.push(kat);
+    else kivalasztottKategoriak.splice(i, 1);
+  }
+
   szuroGomb.forEach(function (gomb) {
     gomb.addEventListener("click", function () {
-      szures = { tipus: "kat", ertek: gomb.dataset.kat };
+      const kat = gomb.dataset.kat;
+      if (kat === "mind") {
+        kivalasztottKategoriak = [];
+        aktivFokat = null;
+      } else {
+        kapcsoloKat(kat);
+      }
       szur();
     });
   });
 
   keresesMezo.addEventListener("input", function () {
-    keresesSzoveg = keresesMezo.value.trim().toLowerCase();
+    keresesSzoveg = keresesMezo.value.trim();
     szur();
   });
 
