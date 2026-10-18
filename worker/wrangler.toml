@@ -1,0 +1,12 @@
+name = "beszoptak-api"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+[[d1_databases]]
+binding = "BESZOPTAK_DB"
+database_name = "beszoptak_db"
+database_id = "b22d2b70-4ab2-4a5a-98a0-d3a2e4b392f7"
+
+[[r2_buckets]]
+binding = "BESZOPTAK_IMAGES"
+bucket_name = "beszoptak-images"

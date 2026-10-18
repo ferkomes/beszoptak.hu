@@ -490,7 +490,7 @@ const ADATOK = {
       nev: "Balásy Gyula",
       tipus: "Médiavállalkozó – a NER egykori kedvence, a Lounge-csoport tulajdonosa",
       fokategoria: "kozeleti",
-      kepek: [],
+      kepek: ["images/balasy-gyula.jpg"],
       visszafizetett: null,
       visszafizetett_szoveg: "Cégeit ingyen átadta az államnak (~80 Mrd Ft értékben)",
       kapcsolatok: [
@@ -534,7 +534,7 @@ const ADATOK = {
       nev: "Szakács István",
       tipus: "Fidesz-közeli (megafonos) influenszer",
       fokategoria: "maganszemely",
-      kepek: [],
+      kepek: ["images/szakacs-istvan.jpg"],
       visszafizetett: null,
       visszafizetett_szoveg: "Nyomozás megszüntetve (bizonyítottság hiányában)",
       kapcsolatok: [
@@ -561,7 +561,7 @@ const ADATOK = {
     },
     {
       id: "dopeman",
-      nev: "Dopeman (Papp Máté)",
+      nev: "Dopeman (Pityinger László)",
       tipus: "Rapper, előadóművész",
       fokategoria: "maganszemely",
       kepek: ["images/dopeman.jpg"],
@@ -623,6 +623,112 @@ const ADATOK = {
       ],
       indok: "Fél milliárd forintot kapott az NKA-tól egy olyan cég, amely Mága Zoltán hivatalos fotósának a nevén volt bejegyezve – a támogatás célja „kulturális tartalomgyártás” volt. Az összeg a Balásy-birodalomhoz köthető számlázási lánc részeként jelent meg; a pénz nem került vissza.",
       kategoriak: ["kapta"]
+    },
+    {
+      id: "torok-ignac-alapitvany",
+      nev: "Török Ignác Gimnáziumért Alapítvány",
+      tipus: "Alapítvány (Győr)",
+      fokategoria: "ceg",
+      kepek: [],
+      logo: { betu: "TI", szin: "#0f766e", szoveg: "Török Ignác Gimnáziumért Alapítvány" },
+      visszafizetett: 9000,
+      visszafizetett_szoveg: "9 000 Ft",
+      kapcsolatok: [
+        { nev: "Török Ignác Gimnáziumért Alapítvány", szerep: "kedvezményezett", kepek: [] }
+      ],
+      indok: "A Jókai 200-hoz kapcsolódó Jókai-konferenciára kért támogatást. A visszafizetési lista legkisebb tétele: 9 000 forint – ennyi is visszakerült az államkasszába.",
+      kategoriak: ["visszafizetes"]
+    },
+    {
+      id: "hetu-hernadmenti",
+      nev: "HETU Hernádmenti Fejlődésért Alapítvány",
+      tipus: "Alapítvány (Szerencs)",
+      fokategoria: "ceg",
+      kepek: [],
+      logo: { betu: "HE", szin: "#b45309", szoveg: "HETU Hernádmenti Fejlődésért Alapítvány" },
+      visszafizetett: 49900000,
+      visszafizetett_szoveg: "49 900 000 Ft",
+      kapcsolatok: [
+        { nev: "HETU Hernádmenti Fejlődésért Alapítvány", szerep: "kedvezményezett", kepek: [] }
+      ],
+      indok: "Közösségi könyvtár kialakítására kért támogatást Szerencsen, majd közel 50 milliót utalt vissza – a magánszemélyeken túli visszafizetések egyik legnagyobb tétele.",
+      kategoriak: ["visszafizetes"]
+    },
+    {
+      id: "nyiregyhaza-alapitvany",
+      nev: "Nyírség Alapítvány",
+      tipus: "Alapítvány (Nyíregyháza)",
+      fokategoria: "ceg",
+      kepek: [],
+      logo: { betu: "NY", szin: "#15803d", szoveg: "Nyírség Alapítvány" },
+      visszafizetett: 20000000,
+      visszafizetett_szoveg: "20 000 000 Ft",
+      kapcsolatok: [
+        { nev: "Nyírség Alapítvány", szerep: "kedvezményezett", kepek: [] }
+      ],
+      indok: "Közösségépítő programokra kért 20 millió forintot, majd visszautalta. A májusi listán 48 tétel szerepelt, ez volt az egyik nagyobb.",
+      kategoriak: ["visszafizetes"]
+    },
+    {
+      id: "bekes-vill",
+      nev: "Békés-VILL Kft.",
+      tipus: "Cég – villanyszerelés, generálkivitelezés",
+      fokategoria: "ceg",
+      kepek: [],
+      logo: { betu: "BV", szin: "#ca8a04", szoveg: "Békés-VILL Kft." },
+      visszafizetett: 19500000,
+      visszafizetett_szoveg: "19 500 000 Ft",
+      kapcsolatok: [
+        { nev: "Békés-VILL Kft.", szerep: "kedvezményezett", kepek: [] }
+      ],
+      indok: "„A főtevékenységünk a villanyszerelés” – mégis kulturális programokra kért majd 20 milliót az NKA-tól, amit végül visszafizetett. Az egyik legékesebb példa arra, kihez is ment a pénz.",
+      kategoriak: ["visszafizetes"]
+    },
+    {
+      id: "isten-szolgalataban",
+      nev: "Isten Szolgálatában Református Missziós Alapítvány",
+      tipus: "Alapítvány (Dunavarsány)",
+      fokategoria: "ceg",
+      kepek: [],
+      logo: { betu: "IM", szin: "#6d28d9", szoveg: "Isten Szolgálatában Református Missziós Alapítvány" },
+      visszafizetett: 15000000,
+      visszafizetett_szoveg: "15 000 000 Ft",
+      kapcsolatok: [
+        { nev: "Isten Szolgálatában Református Missziós Alapítvány", szerep: "kedvezményezett", kepek: [] }
+      ],
+      indok: "Dunavarsányi székhelyű egyházi alapítvány kért közösségi programokra 15 milliót az NKA ideiglenes kollégiumától, majd visszautalta a teljes összeget.",
+      kategoriak: ["visszafizetes"]
+    },
+    {
+      id: "aporliget-fenye",
+      nev: "Aporliget Fénye Természetbarát Egyesület",
+      tipus: "Egyesület",
+      fokategoria: "ceg",
+      kepek: [],
+      logo: { betu: "AF", szin: "#0369a1", szoveg: "Aporliget Fénye Természetbarát Egyesület" },
+      visszafizetett: 10000000,
+      visszafizetett_szoveg: "10 000 000 Ft",
+      kapcsolatok: [
+        { nev: "Aporliget Fénye Természetbarát Egyesület", szerep: "kedvezményezett", kepek: [] }
+      ],
+      indok: "Kulturális programsorozatra pályázott 10 milliót, majd visszafizette. Természetbarát egyesület kulturális programja – a jogcímek széles skáláját mutatja.",
+      kategoriak: ["visszafizetes"]
+    },
+    {
+      id: "smart-system-solutions",
+      nev: "Smart System Solutions Kft.",
+      tipus: "Cég (2025-ben alapított)",
+      fokategoria: "ceg",
+      kepek: [],
+      logo: { betu: "SS", szin: "#4f46e5", szoveg: "Smart System Solutions Kft." },
+      visszafizetett: 10000000,
+      visszafizetett_szoveg: "10 000 000 Ft",
+      kapcsolatok: [
+        { nev: "Márkus Kristóf", szerep: "ügyvezető", kepek: [] },
+        { nev: "Smart System Solutions Kft.", szerep: "kedvezményezett", kepek: [] }
+      ],
+      indok: "2025-ben alapított cég kulturális programra kért 10 milliót az NKA-tól, majd visszafizette. Ügyvezetője: Márkus Kristóf.",
+      kategoriak: ["visszafizetes"]
     }
   ]
 };
