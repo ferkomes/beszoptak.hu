@@ -40,11 +40,11 @@ const ADATOK = {
       nev: "Cseh Tamás (magánszemély)",
       tipus: "Magánszemély / Pályázó",
       fokategoria: "maganszemely",
-      kepek: [],
+      kepek: ["images/cseh-tamas.jpg"],
       visszafizetett: 8500000,
       visszafizetett_szoveg: "8 500 000 Ft",
       kapcsolatok: [
-        { nev: "Cseh Tamás (pályázó magánszemély)", szerep: "pályázó", kepek: [] }
+        { nev: "Cseh Tamás (pályázó magánszemély)", szerep: "pályázó", kepek: ["images/cseh-tamas-kis.jpg"] }
       ],
       indok: "Egyéni kulturális vagy alkotói célra megítélt ideiglenes kollégiumi keret visszafizetése.",
       kategoriak: ["visszafizetes"]
@@ -54,11 +54,11 @@ const ADATOK = {
       nev: "Annus István József",
       tipus: "Magánszemély / Egyéni pályázó",
       fokategoria: "maganszemely",
-      kepek: [],
+      kepek: ["images/annus-istvan.jpg"],
       visszafizetett: 10000000,
       visszafizetett_szoveg: "10 000 000 Ft",
       kapcsolatok: [
-        { nev: "Annus István József", szerep: "kedvezményezett", kepek: [] },
+        { nev: "Annus István József", szerep: "kedvezményezett", kepek: ["images/annus-istvan-kis.jpg"] },
         { nev: "Tarr Zoltán", szerep: "kulturális miniszter, a felülvizsgálat elrendelője", kepek: ["images/tarr-zoltan-kis.jpg"] }
       ],
       indok: "Közösségi és kulturális programok megvalósítására odaítélt ideiglenes keret teljes visszatérítése a minisztériumi felszólítás után.",
@@ -69,11 +69,11 @@ const ADATOK = {
       nev: "Bander József",
       tipus: "Magánszemély / Alkotó",
       fokategoria: "maganszemely",
-      kepek: [],
+      kepek: ["images/bander-jozsef.jpg"],
       visszafizetett: 5000000,
       visszafizetett_szoveg: "5 000 000 Ft",
       kapcsolatok: [
-        { nev: "Bander József", szerep: "pályázó", kepek: [] },
+        { nev: "Bander József", szerep: "pályázó", kepek: ["images/bander-jozsef-kis.jpg"] },
         { nev: "Hankó Balázs", szerep: "volt miniszter, a keret eredeti szétosztója", kepek: ["images/hanko-balazs-kis.jpg"] }
       ],
       indok: "Könnyűzenei produkció vagy zenei alkotói tevékenység elszámolási nehézségei miatt visszafizetett teljes támogatási összeg.",
@@ -84,11 +84,11 @@ const ADATOK = {
       nev: "Papp Zoltán",
       tipus: "Magánszemély / Kulturális menedzser",
       fokategoria: "maganszemely",
-      kepek: [],
+      kepek: ["images/papp-zoltan.jpg"],
       visszafizetett: 4500000,
       visszafizetett_szoveg: "4 500 000 Ft",
       kapcsolatok: [
-        { nev: "Papp Zoltán", szerep: "pályázó magánszemély", kepek: [] },
+        { nev: "Papp Zoltán", szerep: "pályázó magánszemély", kepek: ["images/papp-zoltan-kis.jpg"] },
         { nev: "Pósfai Gábor", szerep: "belügyminiszter, a hatósági ellenőrzések koordinátora", kepek: ["images/posfai-gabor-kis.jpg"] }
       ],
       indok: "Kulturális rendezvények előkészítésére felvett ideiglenes kollégiumi támogatás önkéntes visszafizetése.",
@@ -99,11 +99,11 @@ const ADATOK = {
       nev: "Szabó István Pál",
       tipus: "Magánszemély / Pályázó",
       fokategoria: "maganszemely",
-      kepek: [],
+      kepek: ["images/szabo-istvan-pal.jpg"],
       visszafizetett: 6000000,
       visszafizetett_szoveg: "6 000 000 Ft",
       kapcsolatok: [
-        { nev: "Szabó István Pál", szerep: "kedvezményezett", kepek: [] },
+        { nev: "Szabó István Pál", szerep: "kedvezményezett", kepek: ["images/szabo-istvan-pal-kis.jpg"] },
         { nev: "Melléthei-Barna Márton", szerep: "igazságügyi miniszter, a jogi auditok felügyelője", kepek: ["images/melletthei-barna-kis.jpg"] }
       ],
       indok: "Művészeti projektre kapott támogatás visszautalása a kormányváltást követő átfogó elszámoltatási vizsgálat során.",
@@ -418,8 +418,8 @@ const ADATOK = {
       visszafizetett_szoveg: "Vizsgálat alatt",
       kapcsolatok: [
         { nev: "Hankó Balázs", szerep: "a kollégiumot felügyelő és irányító miniszter", kepek: ["images/hanko-balazs-kis.jpg"] },
-        { nev: "Zámbó Nóra", szerep: "kollégiumi tag, minisztériumi titkárságvezető – szintén őrizetbe vett", kepek: [] },
-        { nev: "Burom Gábor", szerep: "kollégiumi tag, kabinetfőnök-helyettes – szintén őrizetbe vett", kepek: [] }
+        { nev: "Zámbó Nóra", szerep: "kollégiumi tag, minisztériumi titkárságvezető – szintén őrizetbe vett", kepek: ["images/zambo-nora-kis.jpg"] },
+        { nev: "Burom Gábor", szerep: "kollégiumi tag, kabinetfőnök-helyettes – szintén őrizetbe vett", kepek: ["images/burom-gabor-kis.jpg"] }
       ],
       indok: "A 17 milliárd forint kiosztásáról döntő ideiglenes kollégium vezetőjeként 2026. június 23-án vették őrizetbe; letartóztatásban maradt. 2010–2019 között a XVIII. kerület polgármestere, korábbi fideszes országgyűlési képviselő volt, a botrány kirobbanása óta (május 6.) nem a Lechner Kft. munkavállalója.",
       kategoriak: ["elozetes"]
@@ -444,7 +444,7 @@ const ADATOK = {
       nev: "Burom Gábor",
       tipus: "A Kulturális és Innovációs Minisztérium miniszteri kabinetfőnök-helyettese",
       fokategoria: "tisztviselo",
-      kepek: [],
+      kepek: ["images/burom-gabor.jpg"],
       visszafizetett: null,
       visszafizetett_szoveg: "Vizsgálat alatt",
       kapcsolatok: [
@@ -459,7 +459,7 @@ const ADATOK = {
       nev: "Zámbó Nóra",
       tipus: "A KIM Közigazgatási Államtitkári Titkárságának főosztályvezetője, titkárságvezetője",
       fokategoria: "tisztviselo",
-      kepek: [],
+      kepek: ["images/zambo-nora.jpg"],
       visszafizetett: null,
       visszafizetett_szoveg: "Vizsgálat alatt",
       kapcsolatok: [
@@ -756,7 +756,7 @@ const ADATOK = {
       visszafizetett: 10000000,
       visszafizetett_szoveg: "10 000 000 Ft",
       kapcsolatok: [
-        { nev: "Márkus Kristóf", szerep: "ügyvezető", kepek: [] },
+        { nev: "Márkus Kristóf", szerep: "ügyvezető", kepek: ["images/markus-kristof-kis.jpg"] },
         { nev: "Smart System Solutions Kft.", szerep: "kedvezményezett", kepek: [] }
       ],
       indok: "2025-ben alapított cég kulturális programra kért 10 milliót az NKA-tól, majd visszafizette. Ügyvezetője: Márkus Kristóf.",
