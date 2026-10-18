@@ -122,7 +122,7 @@ const ADATOK = {
         { nev: "Fásyné Gurzó Mária", szerep: "tulajdonos, büntetőeljárás alá vont gyanúsított", kepek: [] },
         { nev: "Fásy Ádám", szerep: "zenész, műsorvezető, férj", kepek: [] }
       ],
-      indok: "El nem készült dokumentumfilm és fiktív költségek miatti költségvetési csalás büntetőeljárása során végrehajtott visszatérítés.",
+      indok: "El nem készült dokumentumfilm és fiktív költségek miatti költségvetési csalás büntetőeljárása során végrehajtott visszatérítés. 2026 szeptemberében a dokumentumfilm-ügyben két további gyanúsítottat vettek őrizetbe, köztük Fásyné Gurzó Máriát, akit előzetes letartóztatásba helyeztek.",
       kategoriak: ["visszafizetes", "elozetes"]
     },
     {
@@ -135,7 +135,7 @@ const ADATOK = {
       visszafizetett: 20000000,
       visszafizetett_szoveg: "20 000 000 Ft",
       kapcsolatok: [
-        { nev: "Bús Balázs", szerep: "Óbuda korábbi fideszes polgármestere, az NKA volt alelnöke, őrizetbe vett gyanúsított", kepek: ["images/bus-balazs-kis.jpg"] },
+        { nev: "Bús Balázs", szerep: "Óbuda korábbi fideszes polgármestere, az NKA volt alelnöke – őrizetbe vett, jelenleg letartóztatásban", kepek: ["images/bus-balazs-kis.jpg"] },
         { nev: "Kiss László", szerep: "Óbuda polgármestere – az óbudai korrupciós és elszámolási szálak érintettjeként", kepek: [] }
       ],
       indok: "A NAV hűtlen kezelés és korrupció gyanúja miatti nyomozása nyomán elszámolási elégtelenségek miatt visszafizetett keret.",
@@ -348,18 +348,214 @@ const ADATOK = {
       ],
       indok: "Természetközeli kulturális események címen elnyert ideiglenes kollégiumi támogatás felülvizsgálat utáni visszatérítése.",
       kategoriak: ["visszafizetes"]
+    },
+    {
+      id: "hanko-balazs",
+      nev: "Hankó Balázs",
+      tipus: "Volt kulturális és innovációs miniszter, az NKA elnöke",
+      fokategoria: "kozeleti",
+      kepek: ["images/hanko-balazs.jpg"],
+      visszafizetett: null,
+      visszafizetett_szoveg: "A gyanú szerint 17,3 milliárd Ft eltérített közpénz",
+      kapcsolatok: [
+        { nev: "Varga-Bajusz Veronika", szerep: "egykori államtitkára, a gyanú szerinti bűntárs – letartóztatásban", kepek: [] },
+        { nev: "Bús Balázs", szerep: "az NKA alelnöke, szintén őrizetbe vett", kepek: ["images/bus-balazs-kis.jpg"] },
+        { nev: "Tarr Zoltán", szerep: "kulturális miniszter, az ügyet feltáró és elrendelő társa", kepek: [] }
+      ],
+      indok: "Mentelmi jogának felfüggesztése (2026. szept. 28.) után este őrizetbe vették, majd letartóztatták. A gyanú szerint a Kiemelt Kulturális Programok Ideiglenes Kollégiumát miniszterként, az NKA elnökeként vezetőjeként 1079 támogatói okirattal, 17,3 milliárd forintnyi vagyoni hátránnyal tömegesen, a jogszabályi céloktól eltérően – részben fideszes kampányeseményekre, választókerületenként – osztott szét. Letartóztatása jogerős és végleges (Kecskeméti Törvényszék, 2026. okt. 13.).",
+      kategoriak: ["elozetes"]
+    },
+    {
+      id: "varga-bajusz-veronika",
+      nev: "Varga-Bajusz Veronika",
+      tipus: "Volt államtitkár (KIM) – felsőoktatás, szak- és felnőttképzés, fiatalok",
+      fokategoria: "kozeleti",
+      kepek: [],
+      visszafizetett: null,
+      visszafizetett_szoveg: "Vizsgálat alatt",
+      kapcsolatok: [
+        { nev: "Hankó Balázs", szerep: "volt minisztere, a gyanú szerinti bűntárs – letartóztatásban", kepek: ["images/hanko-balazs-kis.jpg"] }
+      ],
+      indok: "2026. szeptember 28-án Hankó Balázzsal együtt állították elő, október 1-jén a Kecskeméti Járásbíróság letartóztatta – vezetőszáron vitték a tárgyalásra. Október 13-án letartóztatása jogerőssé vált. Különösen jelentős vagyoni hátrányt okozó, bűnszövetségben elkövetett hűtlen kezeléssel gyanúsítják az NKA-ügyben.",
+      kategoriak: ["elozetes"]
+    },
+    {
+      id: "sesztak-miklos",
+      nev: "Seszták Miklós",
+      tipus: "Volt nemzeti fejlesztési miniszter, országgyűlési képviselő",
+      fokategoria: "kozeleti",
+      kepek: ["images/sesztak-miklos.jpg"],
+      visszafizetett: null,
+      visszafizetett_szoveg: "A gyanú szerint 12,6 milliárd Ft kenőpénz",
+      kapcsolatok: [
+        { nev: "Hankó Balázs", szerep: "szintén az NKA-ügyben őrizetbe vett volt miniszter", kepek: ["images/hanko-balazs-kis.jpg"] }
+      ],
+      indok: "Mentelmi jogának felfüggesztése után őrizetbe vették az NKA-ügyhöz kapcsolódóan. A gyanú szerint összesen 12,6 milliárd forint értékű kenőpénzt zsebre rakott.",
+      kategoriak: ["elozetes"]
+    },
+    {
+      id: "bus-balazs",
+      nev: "Bús Balázs",
+      tipus: "Az NKA volt alelnöke, Óbuda volt fideszes polgármestere",
+      fokategoria: "kozeleti",
+      kepek: ["images/bus-balazs.jpg"],
+      visszafizetett: null,
+      visszafizetett_szoveg: "Lásd: Összefogás Óbudáért Egyesület (20 millió Ft visszafizetve)",
+      kapcsolatok: [
+        { nev: "Ughy Attila", szerep: "a döntő kollégium vezetője, szintén őrizetbe vett", kepek: [] },
+        { nev: "Kiss László", szerep: "Óbuda polgármestere – az óbudai szálak érintettje", kepek: [] }
+      ],
+      indok: "A botrány kirobbanása után ő volt az első, aki lemondott: az NKA alelnöki posztjáról távozott, majd 2026. június 23-án őrizetbe vették és gyanúsítottként hallgatták ki Kecskeméten. Hűtlen kezeléssel gyanúsítják, védője szerint részletes vallomást tett, letartóztatását kezdeményezték.",
+      kategoriak: ["elozetes"]
+    },
+    {
+      id: "ughy-attila",
+      nev: "Ughy Attila",
+      tipus: "A Kiemelt Kulturális Programok Ideiglenes Kollégiumának vezetője, volt fideszes képviselő",
+      fokategoria: "kozeleti",
+      kepek: [],
+      visszafizetett: null,
+      visszafizetett_szoveg: "Vizsgálat alatt",
+      kapcsolatok: [
+        { nev: "Hankó Balázs", szerep: "a kollégiumot felügyelő és irányító miniszter", kepek: ["images/hanko-balazs-kis.jpg"] },
+        { nev: "Zámbó Nóra", szerep: "kollégiumi tag, minisztériumi titkárságvezető – szintén őrizetbe vett", kepek: [] },
+        { nev: "Burom Gábor", szerep: "kollégiumi tag, kabinetfőnök-helyettes – szintén őrizetbe vett", kepek: [] }
+      ],
+      indok: "A 17 milliárd forint kiosztásáról döntő ideiglenes kollégium vezetőjeként 2026. június 23-án vették őrizetbe; letartóztatásban maradt. 2010–2019 között a XVIII. kerület polgármestere, korábbi fideszes országgyűlési képviselő volt, a botrány kirobbanása óta (május 6.) nem a Lechner Kft. munkavállalója.",
+      kategoriak: ["elozetes"]
+    },
+    {
+      id: "krucsaine-herter-aniko",
+      nev: "Krucsainé Herter Anikó",
+      tipus: "A Nemzeti Kulturális Támogatáskezelő (NKTK) volt főigazgatója",
+      fokategoria: "tisztviselo",
+      kepek: [],
+      visszafizetett: null,
+      visszafizetett_szoveg: "Vizsgálat alatt",
+      kapcsolatok: [
+        { nev: "Tarr Zoltán", szerep: "kulturális miniszter, aki május 19-én felmentette a posztjáról", kepek: [] },
+        { nev: "Hankó Balázs", szerep: "a rábízott kifizetések felettese – letartóztatásban", kepek: ["images/hanko-balazs-kis.jpg"] }
+      ],
+      indok: "Az NKA-pályázatok lebonyolításával megbízott NKTK főigazgatója volt; Tarr Zoltán 2026. május 19-én mentette fel, június 23-án a NAV őrizetbe vette és gyanúsítottként hallgatta ki. Jogi képviselője később feljelentést tett, mondván: a támogatások egyedi kérelem alapján, szakmai egyeztetés nélkül, a főigazgató személyes utasítására kerültek kifizetésre.",
+      kategoriak: ["elozetes"]
+    },
+    {
+      id: "burom-gabor",
+      nev: "Burom Gábor",
+      tipus: "A Kulturális és Innovációs Minisztérium miniszteri kabinetfőnök-helyettese",
+      fokategoria: "tisztviselo",
+      kepek: [],
+      visszafizetett: null,
+      visszafizetett_szoveg: "Vizsgálat alatt",
+      kapcsolatok: [
+        { nev: "Hankó Balázs", szerep: "a miniszter, akinek a kabinetjében dolgozott – letartóztatásban", kepek: ["images/hanko-balazs-kis.jpg"] },
+        { nev: "Ughy Attila", szerep: "a kollégium vezetője, szintén őrizetbe vett", kepek: [] }
+      ],
+      indok: "A 17 milliárd forint kiosztásáról döntő Kiemelt Kulturális Programok Ideiglenes Kollégiumának tagja; 2026. június 23-án a NAV őrizetbe vette és hűtlen kezelés gyanújával hallgatta ki a minisztériumban tartott kutatásokat követően.",
+      kategoriak: ["elozetes"]
+    },
+    {
+      id: "zambo-nora",
+      nev: "Zámbó Nóra",
+      tipus: "A KIM Közigazgatási Államtitkári Titkárságának főosztályvezetője, titkárságvezetője",
+      fokategoria: "tisztviselo",
+      kepek: [],
+      visszafizetett: null,
+      visszafizetett_szoveg: "Vizsgálat alatt",
+      kapcsolatok: [
+        { nev: "Ughy Attila", szerep: "a kollégium vezetője, szintén őrizetbe vett", kepek: [] },
+        { nev: "Hankó Balázs", szerep: "volt miniszter – letartóztatásban", kepek: ["images/hanko-balazs-kis.jpg"] }
+      ],
+      indok: "A minisztériumi közigazgatási államtitkárságról a döntőbizottsági tagként került a Kiemelt Kulturális Programok Ideiglenes Kollégiumába; a NAV 2026. június 23-án őt is őrizetbe vette és gyanúsítottként hallgatta ki a 17 milliárdos NKA-ügyben.",
+      kategoriak: ["elozetes"]
+    },
+    {
+      id: "nktk-hatteremberek",
+      nev: "NKTK-s és minisztériumi háttéremberek (több személy)",
+      tipus: "Kormányzati alkalmazottak és cégvezetők – a döntések kevésbé ismert végrehajtói",
+      fokategoria: "tisztviselo",
+      logo: { betu: "NK", szin: "#475569", szoveg: "NKTK / KIM" },
+      kepek: [],
+      visszafizetett: null,
+      visszafizetett_szoveg: "A hatóságok vizsgálják",
+      kapcsolatok: [
+        { nev: "Papp Gergely", szerep: "NKTK-projektmenedzser – ő szivárogtatta ki a 17 milliárdos nem nyilvános keretet Molnár Áronnak; ezután őt és környezetét indoklás nélkül kizárták a belső rendszerekből", kepek: [] },
+        { nev: "Krucsainé Herter Anikó", szerep: "a volt főigazgató – szintén őrizetbe vett", kepek: [] }
+      ],
+      indok: "Az NKTK és a KIM egykori és jelenlegi alkalmazottai, akiket a NAV őrizetbe vett: egy részük neve a szélesebb nyilvánosság számára kevésbé ismert. 2026. szeptember 7-én újabb két személyt állítottak elő egy 80 millió forint feletti, el sem készült dokumentumfilm fiktív számlákkal leplezett elszámolása miatt. Szeptember közepén összesen négyen voltak letartóztatásban, öten bűnügyi felügyelet alatt; a gyanúsítottak között volt olyan, aki ma is az NKTK alkalmazásában áll.",
+      kategoriak: ["elozetes"]
+    },
+    {
+      id: "balasy-gyula",
+      nev: "Balásy Gyula",
+      tipus: "Médiavállalkozó – a NER egykori kedvence, a Lounge-csoport tulajdonosa",
+      fokategoria: "kozeleti",
+      kepek: [],
+      visszafizetett: null,
+      visszafizetett_szoveg: "Cégeit ingyen átadta az államnak (~80 Mrd Ft értékben)",
+      kapcsolatok: [
+        { nev: "Ruszin-Szendi Romulusz", szerep: "honvédelmi miniszter – feljelentést tett ellene", kepek: [] },
+        { nev: "Nemzeti Kommunikációs Hivatal", szerep: "a korábbi 300+ milliárdos közbeszerzések gazdája", kepek: [] }
+      ],
+      indok: "2026 májusában közjegyző előtt aláírt okiratban lemondott négy cége (Lounge Design, Lounge Event, New Land Media, Visual Europe) üzletrészeiről, és felajánlotta azokat – értéküket kb. 80 milliárd forintra becsülve –, valamint magántőkealap-befektetéseit az államnak, miután bankszámláikat zárolták. A cégek ellen büntetőeljárás és végrehajtás indult, a Miniszterelnökség, a közmédia és a Nemzeti Rendezvényszervező Ügynökség is felmondta a szerződéseit; a CRCB elemzése szerint 2011 óta ~1135 milliárd forintnyi közpénzhez jutottak.",
+      kategoriak: ["felkeszul"]
+    },
+    {
+      id: "szijjarto-peter",
+      nev: "Szijjártó Péter",
+      tipus: "Volt külgazdasági és külügyminiszter, jelenleg a BYD-nál",
+      fokategoria: "kozeleti",
+      kepek: ["images/szijjarto-peter.jpg"],
+      visszafizetett: null,
+      visszafizetett_szoveg: "Büntetőfeljelentés – kb. 1 millió eurós kár",
+      kapcsolatok: [
+        { nev: "Külgazdasági és Külügyminisztérium", szerep: "a belső audit, amely feltárta a repülőgép-bérlési gyakorlatot", kepek: [] }
+      ],
+      indok: "A Külgazdasági és Külügyminisztérium belső auditja után hivatalos büntetőfeljelentés született a tárca korábbi magánrepülőgép-bérlési gyakorlata miatt (feleslegesen kifizetett luxusutak, kb. 1 millió eurós kár). Az eljárás folyik, előzetesben nincs; ő jelenleg a versenyszférában, a BYD-nál dolgozik.",
+      kategoriak: ["felkeszul"]
+    },
+    {
+      id: "matolcsy-gyorgy",
+      nev: "Matolcsy György és Matolcsy Ádám",
+      tipus: "Az MNB volt elnöke és fia – a jegybanki alapítványok ügyében",
+      fokategoria: "kozeleti",
+      kepek: ["images/matolcsy-gyorgy.jpg"],
+      visszafizetett: null,
+      visszafizetett_szoveg: "Elszámoltatás előkészítése alatt",
+      kapcsolatok: [
+        { nev: "Matolcsy György", szerep: "volt MNB-elnök", kepek: ["images/matolcsy-gyorgy-kis.jpg"] },
+        { nev: "Matolcsy Ádám", szerep: "fia – az alapítványi kifizetések érintettje", kepek: [] }
+      ],
+      indok: "Az MNB-ügyeket és a jegybanki alapítványok kifizetéseit vizsgáló országgyűlési bizottság hivatalosan is beidézheti őket elszámoltatásra. Az eljárás előkészítése folyik, előzetes letartóztatás egyikük esetében sincs.",
+      kategoriak: ["felkeszul"]
+    },
+    {
+      id: "szakacs-istvan",
+      nev: "Szakács István",
+      tipus: "Fidesz-közeli (megafonos) influenszer",
+      fokategoria: "maganszemely",
+      kepek: [],
+      visszafizetett: null,
+      visszafizetett_szoveg: "Nyomozás megszüntetve (bizonyítottság hiányában)",
+      kapcsolatok: [
+        { nev: "Nemzeti Nyomozó Iroda", szerep: "a nyomozást megszüntető hatóság", kepek: [] }
+      ],
+      indok: "2026 júliusában terrorcselekmény elkövetésével fenyegetés gyanújával hallgatták ki és bilincsben vitték be, miután egy videóban Orbán Viktor esetleges elviteléről és kiszabadításáról beszélt. A Nemzeti Nyomozó Iroda október 16-án bizonyítottság hiányában megszüntette ellene a nyomozást; az ügyészség a feljelentő panaszát is elutasította.",
+      kategoriak: ["felkeszul"]
     }
   ]
 };
 
 const KATEGORIAK = {
   sitt: { nev: "Sittre került", leiras: "Elítélés / végrehajtás", szin: "#dc2626", emoji: "⛓️" },
-  elozetes: { nev: "Előzetesben / őrizetben", leiras: "Gyanúsítottként őrizetbe véve", szin: "#d97706", emoji: "🚔" },
+  elozetes: { nev: "Előzetesben / őrizetben", leiras: "Gyanúsítottként őrizetbe véve, letartóztatásban", szin: "#d97706", emoji: "🚔" },
+  felkeszul: { nev: "Eljárás folyik", leiras: "Akik ellen már folyik az eljárás, de (még) nincsenek előzetesben", szin: "#8b5cf6", emoji: "⚖️" },
   visszafizetes: { nev: "Visszaadta a pénzt", leiras: "Önként vagy felszólításra visszautalt", szin: "#059669", emoji: "💸" }
 };
 
 const FOKATEGORIAK = {
   maganszemely: { nev: "Magánszemély, zenész", rovid: "Magánszemély", emoji: "🎤", szin: "#38bdf8" },
   kozeleti: { nev: "Politikus, közszereplő", rovid: "Közszereplő", emoji: "🏛️", szin: "#f472b6" },
+  tisztviselo: { nev: "Kormányzati tisztviselő, háttérember", rovid: "Tisztviselő", emoji: "🗂️", szin: "#fbbf24" },
   ceg: { nev: "Cég, alapítvány, egyesület", rovid: "Cég / szervezet", emoji: "🏢", szin: "#a3e635" }
 };

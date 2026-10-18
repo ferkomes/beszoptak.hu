@@ -83,6 +83,7 @@ body {
 .stat-doboz.sitt .szam { color: var(--sitt); }
 .stat-doboz.elozetes .szam { color: var(--elozetes); }
 .stat-doboz.visszafizetes .szam { color: var(--vissza); }
+.stat-doboz.felkeszul .szam { color: #a78bfa; }
 
 .stat-nevek, .stat-nevek-csoportok {
   margin-top: 8px;
@@ -247,6 +248,7 @@ body {
 .bajsz.sitt { background: rgba(220,38,38,.16); color: #fca5a5; border: 1px solid rgba(220,38,38,.45); }
 .bajsz.elozetes { background: rgba(217,119,6,.16); color: #fcd34d; border: 1px solid rgba(217,119,6,.45); }
 .bajsz.visszafizetes { background: rgba(5,150,105,.16); color: #6ee7b7; border: 1px solid rgba(5,150,105,.45); }
+.bajsz.felkeszul { background: rgba(139,92,246,.16); color: #c4b5fd; border: 1px solid rgba(139,92,246,.45); }
 .bajsz.fokat-bajsz {
   background: color-mix(in srgb, var(--fokat-szin) 16%, transparent);
   color: var(--fokat-szin);
