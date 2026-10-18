@@ -80,12 +80,19 @@
 
     const ertek = bej.visszafizetett != null ? formatOsszeg(bej.visszafizetett) : bej.visszafizetett_szoveg;
     const szoveges = bej.visszafizetett == null;
+    const alapCimke =
+      bej.visszafizetett != null ? "Visszafizetve" :
+      bej.kategoriak.indexOf("elozetes") !== -1 ? "Előzetesben" :
+      bej.kategoriak.indexOf("felkeszul") !== -1 ? "Eljárás folyik" :
+      bej.kategoriak.indexOf("tanu") !== -1 ? "Felmentve" :
+      bej.kategoriak.indexOf("kapta") !== -1 ? "Kapott összeg" :
+      "Státusz";
 
     return '<article class="kartya" data-kat="' + bej.kategoriak.join(" ") + '" data-fokat="' + bej.fokategoria + '">' +
       '<div class="kartya-fej">' + keplet(bej.nev, bej.kepek, bej.logo) +
       '<div class="kartya-cim"><h2>' + bej.nev + '</h2><div class="tipus">' + bej.tipus + "</div></div></div>" +
       '<div class="kategoriak">' + bajszok + "</div>" +
-      '<div class="osszeg-sor"><span class="cimke">' + (bej.osszeg_cimke || "Visszafizetve") + '</span><span class="ertek' + (szoveges ? " szoveg-ertek" : "") + '">' + ertek + "</span></div>" +
+      '<div class="osszeg-sor"><span class="cimke">' + (bej.osszeg_cimke || alapCimke) + '</span><span class="ertek' + (szoveges ? " szoveg-ertek" : "") + '">' + ertek + "</span></div>" +
       '<div class="test">' +
       '<div class="kapcsolatok"><div class="reszlecim">Kapcsolódó kulcsemberek</div><div class="kapcsolat-lista">' + kapcsolatok + "</div></div>" +
       '<div class="indok"><div class="reszlecim">Jogcím / indok</div><p class="indok-szoveg">' + bej.indok + "</p></div>" +

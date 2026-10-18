@@ -184,6 +184,7 @@ body {
 .bajsz.visszafizetes { background: rgba(5,150,105,.16); color: #6ee7b7; border: 1px solid rgba(5,150,105,.45); }
 .bajsz.felkeszul { background: rgba(139,92,246,.16); color: #c4b5fd; border: 1px solid rgba(139,92,246,.45); }
 .bajsz.kapta { background: rgba(234,179,8,.16); color: #fde047; border: 1px solid rgba(234,179,8,.45); }
+.bajsz.tanu { background: rgba(34,211,238,.16); color: #67e8f9; border: 1px solid rgba(34,211,238,.45); }
 .bajsz.fokat-bajsz {
   background: color-mix(in srgb, var(--fokat-szin) 16%, transparent);
   color: var(--fokat-szin);

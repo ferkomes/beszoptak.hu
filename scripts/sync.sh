@@ -18,6 +18,6 @@ done
 cd ..
 
 echo "== Worker deploy (ha valtozott) =="
-npx --yes wrangler deploy --cwd worker >/dev/null 2>&1 || true
+(cd worker && npx --yes wrangler deploy >/dev/null 2>&1) || true
 
 echo "Kesz. API: https://beszoptak-api.ferkomes.workers.dev/api/adat"

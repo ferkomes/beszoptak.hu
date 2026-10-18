@@ -1,5 +1,5 @@
 // Beszoptak.hu - kategorizált szereplők adatai
-// kategoria: "sitt" | "elozetes" | "felkeszul" | "kapta" | "visszafizetes"
+// kategoria: "sitt" | "elozetes" | "felkeszul" | "tanu" | "kapta" | "visszafizetes"
 // fokategoria: "maganszemely" | "kozeleti" | "ceg"
 const ADATOK = {
   forras: "https://github.com/ferkomes/beszoptak.hu",
@@ -544,6 +544,22 @@ const ADATOK = {
       kategoriak: ["felkeszul"]
     },
     {
+      id: "furcht-pal",
+      nev: "Dr. Fürcht Pál",
+      tipus: "Volt főügyész, a Központi Nyomozó Főügyészség (KNYF) korábbi vezetője",
+      fokategoria: "tisztviselo",
+      kepek: ["images/furcht-pal.jpg"],
+      visszafizetett: null,
+      visszafizetett_szoveg: "Felmentve – most inkább tanúskodik",
+      indok: "2026 júniusban lemondott a Központi Nyomozó Főügyészség éléről. Október elején Magyar Péter miniszterelnök nyilvánosan számon kérte rajta a 2024-es ügyészi intézkedéseket: szerinte Fürcht Rogán Antalt tisztázta a Völner–Schadl-ügyben, és egy hajléktalanszállásos incidensből próbált súlyosabb bűncselekményt kreálni, hogy ellehetetlenítse a választási indulást. Meg is gyanúsították azzal, hogy Rogán Antalékat kivágta a nyomozati ügyekből – ebből azonban felmentették, így most már inkább tanúskodik: október 12-én bejelentette, kész részletes vallomást tenni a Rogán–Schadl–Völner-ügyben és az iratok átírására tett kísérletekről, október 18-án pedig soron kívül hallgatják meg. Az ügyészség eközben október 15-én felfüggesztette ügyészi állásából, és fegyelmi eljárást indított ellene, mert „egyoldalú értelmezéssel” hozott nyilvánosságra információkat egy folyamatban lévő büntetőügyben.",
+      kapcsolatok: [
+        { nev: "Rogán Antal", szerep: "kabinetminiszter – őt „vágta ki” az ügyekből (állítólag)", kepek: [] },
+        { nev: "Magyar Péter", szerep: "miniszterelnök – ő állította ki a szorítóból", kepek: [] },
+        { nev: "Lajtár István", szerep: "legfőbb ügyész-helyettes – felfüggesztette és fegyelmit indított", kepek: [] }
+      ],
+      kategoriak: ["tanu"]
+    },
+    {
       id: "toth-gabi",
       nev: "Tóth Gabi",
       tipus: "Énekesnő, előadóművész",
@@ -737,6 +753,7 @@ const KATEGORIAK = {
   sitt: { nev: "Sittre került", leiras: "Elítélés / végrehajtás", szin: "#dc2626", emoji: "⛓️" },
   elozetes: { nev: "Előzetesben / őrizetben", leiras: "Gyanúsítottként őrizetbe véve, letartóztatásban", szin: "#d97706", emoji: "🚔" },
   felkeszul: { nev: "Eljárás folyik", leiras: "Akik ellen már folyik az eljárás, de (még) nincsenek előzetesben", szin: "#8b5cf6", emoji: "⚖️" },
+  tanu: { nev: "Tanúskodik (felmentve)", leiras: "Felmentették, inkább vallomást tesz a régi barátai ellen", szin: "#22d3ee", emoji: "🕊️" },
   kapta: { nev: "Kapta a pénzt", leiras: "Kedvezményezett – a pénz nála landolt, egyelőre nem adta vissza", szin: "#eab308", emoji: "💰" },
   visszafizetes: { nev: "Visszaadta a pénzt", leiras: "Önként vagy felszólításra visszautalt", szin: "#059669", emoji: "💸" }
 };
