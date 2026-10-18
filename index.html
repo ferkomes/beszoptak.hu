@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>beszoptak.hu – Kik hova kerültek?</title>
+  <meta name="description" content="Képes bemutató arról, hogy kik kerültek kategorizálásra: sittre, előzetesbe, vagy adtak vissza pénzt.">
+  <link rel="preconnect" href="https://upload.wikimedia.org">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="fejlec">
+    <div class="fejlec-belseje">
+      <h1 class="logo">beszoptak<span>.hu</span></h1>
+      <p class="alcim">Kik kerültek eddig sittre, előzetesbe – vagy adták vissza a pénzt?</p>
+      <div class="statisztika" id="statisztika"></div>
+    </div>
+  </header>
+
+  <nav class="szurok" id="szurok">
+    <button class="szuro aktiv" data-kat="mind">Mind</button>
+    <button class="szuro" data-kat="sitt">⛓️ Sittre került</button>
+    <button class="szuro" data-kat="elozetes">🚔 Előzetesben</button>
+    <button class="szuro" data-kat="visszafizetes">💸 Visszaadta a pénzt</button>
+    <input type="search" id="kereses" class="kereses" placeholder="Keresés névvel, céggel…">
+  </nav>
+
+  <main id="galeria" class="galeria"></main>
+
+  <footer class="labjegyzet">
+    <p>Forrás: <a href="https://github.com/ferkomes/beszoptak.hu" target="_blank" rel="noopener">github.com/ferkomes/beszoptak.hu</a> ·
+    Adatok tájékoztató jellegűek, nyilvános híradások alapján ·
+    Képek: Wikipédia / Wikimedia Commons (CC)</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
