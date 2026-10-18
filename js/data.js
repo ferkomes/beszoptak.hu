@@ -10,11 +10,11 @@ const ADATOK = {
       nev: "Kozák László (Kis Grófo)",
       tipus: "Mulatós zenész, előadóművész",
       fokategoria: "maganszemely",
-      kepek: [],
+      kepek: ["images/kis-grofo.jpg"],
       visszafizetett: 5000000,
       visszafizetett_szoveg: "5 000 000 Ft",
       kapcsolatok: [
-        { nev: "Kozák László (Kis Grófo)", szerep: "pályázó", kepek: [] },
+        { nev: "Kozák László (Kis Grófo)", szerep: "pályázó", kepek: ["images/kis-grofo-kis.jpg"] },
         { nev: "id. Kozák László", szerep: "néhai édesapja, a családi brand alapítója", kepek: [] }
       ],
       indok: "Új dalok megírására és megjelentetésére kapott könnyűzenei támogatás önkéntes visszafizetése.",
@@ -516,17 +516,33 @@ const ADATOK = {
     },
     {
       id: "matolcsy-gyorgy",
-      nev: "Matolcsy György és Matolcsy Ádám",
-      tipus: "Az MNB volt elnöke és fia – a jegybanki alapítványok ügyében",
+      nev: "Matolcsy György",
+      tipus: "A Magyar Nemzeti Bank volt elnöke",
       fokategoria: "kozeleti",
       kepek: ["images/matolcsy-gyorgy.jpg"],
       visszafizetett: null,
       visszafizetett_szoveg: "Elszámoltatás előkészítése alatt",
       kapcsolatok: [
-        { nev: "Matolcsy György", szerep: "volt MNB-elnök", kepek: ["images/matolcsy-gyorgy-kis.jpg"] },
-        { nev: "Matolcsy Ádám", szerep: "fia – az alapítványi kifizetések érintettje", kepek: [] }
+        { nev: "Matolcsy Ádám", szerep: "fia – külön kártyán szerepel", kepek: ["images/matolcsy-adam-kis.jpg"] },
+        { nev: "Országgyűlési vizsgálóbizottság", szerep: "őt is meghallgatná az MNB-ügyben", kepek: [] }
       ],
-      indok: "Az MNB-ügyeket és a jegybanki alapítványok kifizetéseit vizsgáló országgyűlési bizottság hivatalosan is beidézheti őket elszámoltatásra. Az eljárás előkészítése folyik, előzetes letartóztatás egyikük esetében sincs.",
+      indok: "Az MNB-ügyeket és a jegybanki alapítványok kifizetéseit vizsgáló parlamenti bizottság hivatalosan is beidézheti elszámoltatásra. Szerinte az alapítványi vagyon nem tűnt el, csak „csalóka a tőzsdei értéke”. Az eljárás előkészítése folyik, előzetes letartóztatása nincs; a KNYF nyomozása egyelőre gyanúsított nélkül zajlik.",
+      kategoriak: ["felkeszul"]
+    },
+    {
+      id: "matolcsy-adam",
+      nev: "Matolcsy Ádám",
+      tipus: "A volt jegybankelnök fia – üzletember, Dubaj",
+      fokategoria: "kozeleti",
+      kepek: ["images/matolcsy-adam.jpg"],
+      visszafizetett: null,
+      visszafizetett_szoveg: "Nyomoznak az ügyében – gyanúsított még nincs",
+      kapcsolatok: [
+        { nev: "Matolcsy György", szerep: "édesapja, a volt MNB-elnök", kepek: ["images/matolcsy-gyorgy-kis.jpg"] },
+        { nev: "Somlai Bálint", szerep: "üzlettárs – az elveszett pénzek egyik kulcsfigurája", kepek: [] },
+        { nev: "Központi Nyomozó Főügyészség", szerep: "a Matolcsy-körnél házkutatást tartó nyomozóhatóság", kepek: [] }
+      ],
+      indok: "A jegybanki alapítványok (PADME) 266+127,5 milliárd forintjának ügyében több mint másfél éve folyik nyomozás különösen jelentős vagyoni hátrányt okozó hűtlen kezelés miatt. 2026. szeptember 22-én a KNYF házkutatást és lefoglalást tartott a Matolcsy-körnél – gyanúsítotti kihallgatás eddig nem volt. Az ügyben 97 magánszemély, 36 cég és 11 magántőkealap érintett, 91,8 milliárd forintnyi készpénz és értékpapír került biztosítás alá. Ádám luxus életmódjáról ismert, dubaji cégéhez került a Vörösmarty téri ingatlan, 2025-ben holdingja 407 milliós nyereséget és 36,6 milliárdos eszközállományt mutatott ki; állítása szerint bevételei legálisak, tartózkodási engedéllyel él az Egyesült Arab Emírségekben, és kész együttműködni a hatóságokkal.",
       kategoriak: ["felkeszul"]
     },
     {
