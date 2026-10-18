@@ -15,7 +15,7 @@ const ADATOK = {
       visszafizetett_szoveg: "5 000 000 Ft",
       kapcsolatok: [
         { nev: "Kozák László (Kis Grófo)", szerep: "pályázó", kepek: ["images/kis-grofo-kis.jpg"] },
-        { nev: "id. Kozák László", szerep: "néhai édesapja, a családi brand alapítója", kepek: [] }
+        { nev: "id. Kozák László", szerep: "néhai édesapja, a családi brand alapítója", kepek: ["images/kozak-laszlo-idosebb-kis.jpg"] }
       ],
       indok: "Új dalok megírására és megjelentetésére kapott könnyűzenei támogatás önkéntes visszafizetése.",
       kategoriak: ["visszafizetes"]
@@ -30,7 +30,7 @@ const ADATOK = {
       visszafizetett_szoveg: "5 000 000 Ft",
       kapcsolatok: [
         { nev: "Muri Enikő", szerep: "énekesnő", kepek: ["images/muri-eniko-kis.jpg"] },
-        { nev: "Szakács Gergő", szerep: "alkotótárs / zenei közreműködő", kepek: [] }
+        { nev: "Szakács Gergő", szerep: "alkotótárs / zenei közreműködő", kepek: ["images/szakacs-gergo-kis.jpg"] }
       ],
       indok: "Könnyűzenei és előadóművészeti NKA pályázaton nyert támogatás önkéntes visszautalása.",
       kategoriak: ["visszafizetes"]
@@ -59,7 +59,7 @@ const ADATOK = {
       visszafizetett_szoveg: "10 000 000 Ft",
       kapcsolatok: [
         { nev: "Annus István József", szerep: "kedvezményezett", kepek: [] },
-        { nev: "Tarr Zoltán", szerep: "kulturális miniszter, a felülvizsgálat elrendelője", kepek: [] }
+        { nev: "Tarr Zoltán", szerep: "kulturális miniszter, a felülvizsgálat elrendelője", kepek: ["images/tarr-zoltan-kis.jpg"] }
       ],
       indok: "Közösségi és kulturális programok megvalósítására odaítélt ideiglenes keret teljes visszatérítése a minisztériumi felszólítás után.",
       kategoriak: ["visszafizetes"]
@@ -89,7 +89,7 @@ const ADATOK = {
       visszafizetett_szoveg: "4 500 000 Ft",
       kapcsolatok: [
         { nev: "Papp Zoltán", szerep: "pályázó magánszemély", kepek: [] },
-        { nev: "Pósfai Gábor", szerep: "belügyminiszter, a hatósági ellenőrzések koordinátora", kepek: [] }
+        { nev: "Pósfai Gábor", szerep: "belügyminiszter, a hatósági ellenőrzések koordinátora", kepek: ["images/posfai-gabor-kis.jpg"] }
       ],
       indok: "Kulturális rendezvények előkészítésére felvett ideiglenes kollégiumi támogatás önkéntes visszafizetése.",
       kategoriak: ["visszafizetes"]
@@ -104,7 +104,7 @@ const ADATOK = {
       visszafizetett_szoveg: "6 000 000 Ft",
       kapcsolatok: [
         { nev: "Szabó István Pál", szerep: "kedvezményezett", kepek: [] },
-        { nev: "Melléthei-Barna Márton", szerep: "igazságügyi miniszter, a jogi auditok felügyelője", kepek: [] }
+        { nev: "Melléthei-Barna Márton", szerep: "igazságügyi miniszter, a jogi auditok felügyelője", kepek: ["images/melletthei-barna-kis.jpg"] }
       ],
       indok: "Művészeti projektre kapott támogatás visszautalása a kormányváltást követő átfogó elszámoltatási vizsgálat során.",
       kategoriak: ["visszafizetes"]
@@ -119,8 +119,8 @@ const ADATOK = {
       visszafizetett: null,
       visszafizetett_szoveg: "Maradéktalan kárrendezés (a kapott támogatás teljes összege)",
       kapcsolatok: [
-        { nev: "Fásyné Gurzó Mária", szerep: "tulajdonos, büntetőeljárás alá vont gyanúsított", kepek: [] },
-        { nev: "Fásy Ádám", szerep: "zenész, műsorvezető, férj", kepek: [] }
+        { nev: "Fásyné Gurzó Mária", szerep: "tulajdonos, büntetőeljárás alá vont gyanúsított", kepek: ["images/fasyne-gurzo-maria-kis.jpg"] },
+        { nev: "Fásy Ádám", szerep: "zenész, műsorvezető, férj", kepek: ["images/fasy-adam-kis.jpg"] }
       ],
       indok: "El nem készült dokumentumfilm és fiktív költségek miatti költségvetési csalás büntetőeljárása során végrehajtott visszatérítés. 2026 szeptemberében a dokumentumfilm-ügyben két további gyanúsítottat vettek őrizetbe, köztük Fásyné Gurzó Máriát, akit előzetes letartóztatásba helyeztek.",
       kategoriak: ["visszafizetes", "elozetes"]
@@ -136,7 +136,7 @@ const ADATOK = {
       visszafizetett_szoveg: "20 000 000 Ft",
       kapcsolatok: [
         { nev: "Bús Balázs", szerep: "Óbuda korábbi fideszes polgármestere, az NKA volt alelnöke – őrizetbe vett, jelenleg letartóztatásban", kepek: ["images/bus-balazs-kis.jpg"] },
-        { nev: "Kiss László", szerep: "Óbuda polgármestere – az óbudai korrupciós és elszámolási szálak érintettjeként", kepek: [] }
+        { nev: "Kiss László", szerep: "Óbuda polgármestere – az óbudai korrupciós és elszámolási szálak érintettjeként", kepek: ["images/kiss-laszlo-obuda-kis.jpg"] }
       ],
       indok: "A NAV hűtlen kezelés és korrupció gyanúja miatti nyomozása nyomán elszámolási elégtelenségek miatt visszafizetett keret.",
       kategoriak: ["visszafizetes", "elozetes"]
@@ -152,7 +152,7 @@ const ADATOK = {
       visszafizetett_szoveg: "1 250 000 000 Ft",
       kapcsolatok: [
         { nev: "Baán László", szerep: "miniszteri biztos, a Liget Budapest projekt vezetője", kepek: ["images/baan-laszlo-kis.jpg"] },
-        { nev: "Gyorgyevics Benedek", szerep: "vezérigazgató", kepek: [] }
+        { nev: "Gyorgyevics Benedek", szerep: "vezérigazgató", kepek: ["images/gyorgyevics-benedek-kis.jpg"] }
       ],
       indok: "A Nemzeti Fotóművészeti Múzeumhoz kapcsolódó és egyéb kulturális projektek meg nem valósult, teljes egészében visszautalt támogatása.",
       kategoriak: ["visszafizetes"]
@@ -167,8 +167,8 @@ const ADATOK = {
       visszafizetett: 289000000,
       visszafizetett_szoveg: "289 000 000 Ft",
       kapcsolatok: [
-        { nev: "Stefka István", szerep: "kormányközeli újságíró, korábbi tulajdonos", kepek: [] },
-        { nev: "Huth Gergely", szerep: "Pesti Srácok főszerkesztője, korábbi érdekelt", kepek: [] }
+        { nev: "Stefka István", szerep: "kormányközeli újságíró, korábbi tulajdonos", kepek: ["images/stefka-istvan-kis.jpg"] },
+        { nev: "Huth Gergely", szerep: "Pesti Srácok főszerkesztője, korábbi érdekelt", kepek: ["images/huth-gergely-kis.jpg"] }
       ],
       indok: "A Bem rakparti fideszes törzshelyként működő R56 söröző és rendezvényközpont elszámolási felülvizsgálata nyomán visszautalt összeg.",
       kategoriak: ["visszafizetes"]
@@ -199,7 +199,7 @@ const ADATOK = {
       visszafizetett: 146000000,
       visszafizetett_szoveg: "146 000 000 Ft",
       kapcsolatok: [
-        { nev: "Bódis László", szerep: "vezérigazgató, a Kulturális és Innovációs Minisztérium volt helyettes államtitkára", kepek: [] },
+        { nev: "Bódis László", szerep: "vezérigazgató, a Kulturális és Innovációs Minisztérium volt helyettes államtitkára", kepek: ["images/bodis-laszlo-kis.jpg"] },
         { nev: "Hankó Balázs", szerep: "kulturális és innovációs miniszter, az NIÜ felügyelője", kepek: ["images/hanko-balazs-kis.jpg"] }
       ],
       indok: "Meg nem valósult nagyszabású expó és innovációs bemutatók miatt visszaküldött NKA keretösszeg.",
@@ -215,8 +215,8 @@ const ADATOK = {
       visszafizetett: 50000000,
       visszafizetett_szoveg: "50 000 000 Ft",
       kapcsolatok: [
-        { nev: "Bárdosi Sándor", szerep: "olimpiai ezüstérmes birkózó, az alapítvány rendezvényeinek gyakori arca", kepek: [] },
-        { nev: "Növényi Norbert", szerep: "olimpiai bajnok, kuratóriumokhoz/rendezvényekhez köthető sportoló", kepek: [] }
+        { nev: "Bárdosi Sándor", szerep: "olimpiai ezüstérmes birkózó, az alapítvány rendezvényeinek gyakori arca", kepek: ["images/bardosi-sandor-kis.jpg"] },
+        { nev: "Növényi Norbert", szerep: "olimpiai bajnok, kuratóriumokhoz/rendezvényekhez köthető sportoló", kepek: ["images/novenyi-norbert-kis.jpg"] }
       ],
       indok: "Identitásőrző, sport- és kulturális programok hiányos elszámolása miatti önkéntes visszafizetés.",
       kategoriak: ["visszafizetes"]
@@ -231,8 +231,8 @@ const ADATOK = {
       visszafizetett: 50000000,
       visszafizetett_szoveg: "50 000 000 Ft",
       kapcsolatok: [
-        { nev: "Kiss János", szerep: "Miskolc korábbi fideszes polgármester-jelöltje és országgyűlési képviselője", kepek: [] },
-        { nev: "Alakszai Zoltán", szerep: "kormányhivatal-vezető, miskolci fideszes politikus", kepek: [] }
+        { nev: "Kiss János", szerep: "Miskolc korábbi fideszes polgármester-jelöltje és országgyűlési képviselője", kepek: ["images/kiss-janos-dvzk-kis.jpg"] },
+        { nev: "Alakszai Zoltán", szerep: "kormányhivatal-vezető, miskolci fideszes politikus", kepek: ["images/alakszai-zoltan-kis.jpg"] }
       ],
       indok: "Helyi közösségépítő és kulturális programok elmaradása vagy szabálytalan dokumentációja miatt visszafizetett összeg.",
       kategoriak: ["visszafizetes"]
@@ -247,8 +247,8 @@ const ADATOK = {
       visszafizetett: 20000000,
       visszafizetett_szoveg: "20 000 000 Ft",
       kapcsolatok: [
-        { nev: "Tarr Zoltán", szerep: "kulturális miniszter", kepek: [] },
-        { nev: "Kármán András", szerep: "pénzügyminiszter", kepek: [] }
+        { nev: "Tarr Zoltán", szerep: "kulturális miniszter", kepek: ["images/tarr-zoltan-kis.jpg"] },
+        { nev: "Kármán András", szerep: "pénzügyminiszter", kepek: ["images/karman-andras-kis.jpg"] }
       ],
       indok: "Családügyi és közösségépítő programok címen elnyert, de elmaradt vagy nem megfelelően igazolt rendezvények NKA-keretének teljes visszautalása.",
       kategoriak: ["visszafizetes"]
@@ -263,8 +263,8 @@ const ADATOK = {
       visszafizetett: 25000000,
       visszafizetett_szoveg: "25 000 000 Ft",
       kapcsolatok: [
-        { nev: "Pósfai Gábor", szerep: "belügyminiszter", kepek: [] },
-        { nev: "Tarr Zoltán", szerep: "kulturális miniszter", kepek: [] }
+        { nev: "Pósfai Gábor", szerep: "belügyminiszter", kepek: ["images/posfai-gabor-kis.jpg"] },
+        { nev: "Tarr Zoltán", szerep: "kulturális miniszter", kepek: ["images/tarr-zoltan-kis.jpg"] }
       ],
       indok: "Települési identitásőrző programok és zenés események hiányos elszámolása miatt önkéntesen visszafizetett NKA-forrás.",
       kategoriak: ["visszafizetes"]
@@ -279,7 +279,7 @@ const ADATOK = {
       visszafizetett: 15000000,
       visszafizetett_szoveg: "15 000 000 Ft",
       kapcsolatok: [
-        { nev: "Melléthei-Barna Márton", szerep: "igazságügyi miniszter", kepek: [] },
+        { nev: "Melléthei-Barna Márton", szerep: "igazságügyi miniszter", kepek: ["images/melletthei-barna-kis.jpg"] },
         { nev: "Hankó Balázs", szerep: "volt kulturális miniszter", kepek: ["images/hanko-balazs-kis.jpg"] }
       ],
       indok: "Hagyományőrző rendezvények és verses-zenés művészeti produkciók elmaradása miatt visszautalt ideiglenes kollégiumi támogatás.",
@@ -295,8 +295,8 @@ const ADATOK = {
       visszafizetett: 30000000,
       visszafizetett_szoveg: "30 000 000 Ft",
       kapcsolatok: [
-        { nev: "Tarr Zoltán", szerep: "kulturális miniszter", kepek: [] },
-        { nev: "Kármán András", szerep: "pénzügyminiszter", kepek: [] }
+        { nev: "Tarr Zoltán", szerep: "kulturális miniszter", kepek: ["images/tarr-zoltan-kis.jpg"] },
+        { nev: "Kármán András", szerep: "pénzügyminiszter", kepek: ["images/karman-andras-kis.jpg"] }
       ],
       indok: "Regionális könnyűzenei események és közösségi programok elszámolási szabálytalanságai miatt kényszerűen visszafizetett összeg.",
       kategoriak: ["visszafizetes"]
@@ -311,8 +311,8 @@ const ADATOK = {
       visszafizetett: 20000000,
       visszafizetett_szoveg: "20 000 000 Ft",
       kapcsolatok: [
-        { nev: "Pósfai Gábor", szerep: "belügyminiszter", kepek: [] },
-        { nev: "Tarr Zoltán", szerep: "kulturális miniszter", kepek: [] }
+        { nev: "Pósfai Gábor", szerep: "belügyminiszter", kepek: ["images/posfai-gabor-kis.jpg"] },
+        { nev: "Tarr Zoltán", szerep: "kulturális miniszter", kepek: ["images/tarr-zoltan-kis.jpg"] }
       ],
       indok: "Közösségi terek programjaira odaítélt, de a TISZA-kormány auditja során kifogásolt és emiatt visszautalt pályázati keret.",
       kategoriak: ["visszafizetes"]
@@ -327,7 +327,7 @@ const ADATOK = {
       visszafizetett: 18500000,
       visszafizetett_szoveg: "18 500 000 Ft",
       kapcsolatok: [
-        { nev: "Melléthei-Barna Márton", szerep: "igazságügyi miniszter", kepek: [] },
+        { nev: "Melléthei-Barna Márton", szerep: "igazságügyi miniszter", kepek: ["images/melletthei-barna-kis.jpg"] },
         { nev: "Hankó Balázs", szerep: "volt miniszter", kepek: ["images/hanko-balazs-kis.jpg"] }
       ],
       indok: "Kulturális programsorozatok elégtelen dokumentációja és a hatósági eljárások elkerülése érdekében megtett önkéntes kárrendezés.",
@@ -343,8 +343,8 @@ const ADATOK = {
       visszafizetett: 12000000,
       visszafizetett_szoveg: "12 000 000 Ft",
       kapcsolatok: [
-        { nev: "Tarr Zoltán", szerep: "kulturális miniszter", kepek: [] },
-        { nev: "Pósfai Gábor", szerep: "belügyminiszter", kepek: [] }
+        { nev: "Tarr Zoltán", szerep: "kulturális miniszter", kepek: ["images/tarr-zoltan-kis.jpg"] },
+        { nev: "Pósfai Gábor", szerep: "belügyminiszter", kepek: ["images/posfai-gabor-kis.jpg"] }
       ],
       indok: "Természetközeli kulturális események címen elnyert ideiglenes kollégiumi támogatás felülvizsgálat utáni visszatérítése.",
       kategoriak: ["visszafizetes"]
@@ -358,9 +358,9 @@ const ADATOK = {
       visszafizetett: null,
       visszafizetett_szoveg: "A gyanú szerint 17,3 milliárd Ft eltérített közpénz",
       kapcsolatok: [
-        { nev: "Varga-Bajusz Veronika", szerep: "egykori államtitkára, a gyanú szerinti bűntárs – letartóztatásban", kepek: [] },
+        { nev: "Varga-Bajusz Veronika", szerep: "egykori államtitkára, a gyanú szerinti bűntárs – letartóztatásban", kepek: ["images/varga-bajusz-veronika-kis.jpg"] },
         { nev: "Bús Balázs", szerep: "az NKA alelnöke, szintén őrizetbe vett", kepek: ["images/bus-balazs-kis.jpg"] },
-        { nev: "Tarr Zoltán", szerep: "kulturális miniszter, az ügyet feltáró és elrendelő társa", kepek: [] }
+        { nev: "Tarr Zoltán", szerep: "kulturális miniszter, az ügyet feltáró és elrendelő társa", kepek: ["images/tarr-zoltan-kis.jpg"] }
       ],
       indok: "Mentelmi jogának felfüggesztése (2026. szept. 28.) után este őrizetbe vették, majd letartóztatták. A gyanú szerint a Kiemelt Kulturális Programok Ideiglenes Kollégiumát miniszterként, az NKA elnökeként vezetőjeként 1079 támogatói okirattal, 17,3 milliárd forintnyi vagyoni hátránnyal tömegesen, a jogszabályi céloktól eltérően – részben fideszes kampányeseményekre, választókerületenként – osztott szét. Letartóztatása jogerős és végleges (Kecskeméti Törvényszék, 2026. okt. 13.).",
       kategoriak: ["elozetes"]
@@ -402,8 +402,8 @@ const ADATOK = {
       visszafizetett: null,
       visszafizetett_szoveg: "Lásd: Összefogás Óbudáért Egyesület (20 millió Ft visszafizetve)",
       kapcsolatok: [
-        { nev: "Ughy Attila", szerep: "a döntő kollégium vezetője, szintén őrizetbe vett", kepek: [] },
-        { nev: "Kiss László", szerep: "Óbuda polgármestere – az óbudai szálak érintettje", kepek: [] }
+        { nev: "Ughy Attila", szerep: "a döntő kollégium vezetője, szintén őrizetbe vett", kepek: ["images/ughy-attila-kis.jpg"] },
+        { nev: "Kiss László", szerep: "Óbuda polgármestere – az óbudai szálak érintettje", kepek: ["images/kiss-laszlo-obuda-kis.jpg"] }
       ],
       indok: "A botrány kirobbanása után ő volt az első, aki lemondott: az NKA alelnöki posztjáról távozott, majd 2026. június 23-án őrizetbe vették és gyanúsítottként hallgatták ki Kecskeméten. Hűtlen kezeléssel gyanúsítják, védője szerint részletes vallomást tett, letartóztatását kezdeményezték.",
       kategoriak: ["elozetes"]
@@ -413,7 +413,7 @@ const ADATOK = {
       nev: "Ughy Attila",
       tipus: "A Kiemelt Kulturális Programok Ideiglenes Kollégiumának vezetője, volt fideszes képviselő",
       fokategoria: "kozeleti",
-      kepek: [],
+      kepek: ["images/ughy-attila.jpg"],
       visszafizetett: null,
       visszafizetett_szoveg: "Vizsgálat alatt",
       kapcsolatok: [
@@ -429,11 +429,11 @@ const ADATOK = {
       nev: "Krucsainé Herter Anikó",
       tipus: "A Nemzeti Kulturális Támogatáskezelő (NKTK) volt főigazgatója",
       fokategoria: "tisztviselo",
-      kepek: [],
+      kepek: ["images/krucsaine-herter.jpg"],
       visszafizetett: null,
       visszafizetett_szoveg: "Vizsgálat alatt",
       kapcsolatok: [
-        { nev: "Tarr Zoltán", szerep: "kulturális miniszter, aki május 19-én felmentette a posztjáról", kepek: [] },
+        { nev: "Tarr Zoltán", szerep: "kulturális miniszter, aki május 19-én felmentette a posztjáról", kepek: ["images/tarr-zoltan-kis.jpg"] },
         { nev: "Hankó Balázs", szerep: "a rábízott kifizetések felettese – letartóztatásban", kepek: ["images/hanko-balazs-kis.jpg"] }
       ],
       indok: "Az NKA-pályázatok lebonyolításával megbízott NKTK főigazgatója volt; Tarr Zoltán 2026. május 19-én mentette fel, június 23-án a NAV őrizetbe vette és gyanúsítottként hallgatta ki. Jogi képviselője később feljelentést tett, mondván: a támogatások egyedi kérelem alapján, szakmai egyeztetés nélkül, a főigazgató személyes utasítására kerültek kifizetésre.",
@@ -449,7 +449,7 @@ const ADATOK = {
       visszafizetett_szoveg: "Vizsgálat alatt",
       kapcsolatok: [
         { nev: "Hankó Balázs", szerep: "a miniszter, akinek a kabinetjében dolgozott – letartóztatásban", kepek: ["images/hanko-balazs-kis.jpg"] },
-        { nev: "Ughy Attila", szerep: "a kollégium vezetője, szintén őrizetbe vett", kepek: [] }
+        { nev: "Ughy Attila", szerep: "a kollégium vezetője, szintén őrizetbe vett", kepek: ["images/ughy-attila-kis.jpg"] }
       ],
       indok: "A 17 milliárd forint kiosztásáról döntő Kiemelt Kulturális Programok Ideiglenes Kollégiumának tagja; 2026. június 23-án a NAV őrizetbe vette és hűtlen kezelés gyanújával hallgatta ki a minisztériumban tartott kutatásokat követően.",
       kategoriak: ["elozetes"]
@@ -463,7 +463,7 @@ const ADATOK = {
       visszafizetett: null,
       visszafizetett_szoveg: "Vizsgálat alatt",
       kapcsolatok: [
-        { nev: "Ughy Attila", szerep: "a kollégium vezetője, szintén őrizetbe vett", kepek: [] },
+        { nev: "Ughy Attila", szerep: "a kollégium vezetője, szintén őrizetbe vett", kepek: ["images/ughy-attila-kis.jpg"] },
         { nev: "Hankó Balázs", szerep: "volt miniszter – letartóztatásban", kepek: ["images/hanko-balazs-kis.jpg"] }
       ],
       indok: "A minisztériumi közigazgatási államtitkárságról a döntőbizottsági tagként került a Kiemelt Kulturális Programok Ideiglenes Kollégiumába; a NAV 2026. június 23-án őt is őrizetbe vette és gyanúsítottként hallgatta ki a 17 milliárdos NKA-ügyben.",
@@ -479,8 +479,8 @@ const ADATOK = {
       visszafizetett: null,
       visszafizetett_szoveg: "A hatóságok vizsgálják",
       kapcsolatok: [
-        { nev: "Papp Gergely", szerep: "NKTK-projektmenedzser – ő szivárogtatta ki a 17 milliárdos nem nyilvános keretet Molnár Áronnak; ezután őt és környezetét indoklás nélkül kizárták a belső rendszerekből", kepek: [] },
-        { nev: "Krucsainé Herter Anikó", szerep: "a volt főigazgató – szintén őrizetbe vett", kepek: [] }
+        { nev: "Papp Gergely", szerep: "NKTK-projektmenedzser – ő szivárogtatta ki a 17 milliárdos nem nyilvános keretet Molnár Áronnak; ezután őt és környezetét indoklás nélkül kizárták a belső rendszerekből", kepek: ["images/papp-gergely-kis.png"] },
+        { nev: "Krucsainé Herter Anikó", szerep: "a volt főigazgató – szintén őrizetbe vett", kepek: ["images/krucsaine-herter-kis.jpg"] }
       ],
       indok: "Az NKTK és a KIM egykori és jelenlegi alkalmazottai, akiket a NAV őrizetbe vett: egy részük neve a szélesebb nyilvánosság számára kevésbé ismert. 2026. szeptember 7-én újabb két személyt állítottak elő egy 80 millió forint feletti, el sem készült dokumentumfilm fiktív számlákkal leplezett elszámolása miatt. Szeptember közepén összesen négyen voltak letartóztatásban, öten bűnügyi felügyelet alatt; a gyanúsítottak között volt olyan, aki ma is az NKTK alkalmazásában áll.",
       kategoriak: ["elozetes"]
@@ -494,7 +494,7 @@ const ADATOK = {
       visszafizetett: null,
       visszafizetett_szoveg: "Cégeit ingyen átadta az államnak (~80 Mrd Ft értékben)",
       kapcsolatok: [
-        { nev: "Ruszin-Szendi Romulusz", szerep: "honvédelmi miniszter – feljelentést tett ellene", kepek: [] },
+        { nev: "Ruszin-Szendi Romulusz", szerep: "honvédelmi miniszter – feljelentést tett ellene", kepek: ["images/ruszin-szendi-kis.jpg"] },
         { nev: "Nemzeti Kommunikációs Hivatal", szerep: "a korábbi 300+ milliárdos közbeszerzések gazdája", kepek: [] }
       ],
       indok: "2026 májusában közjegyző előtt aláírt okiratban lemondott négy cége (Lounge Design, Lounge Event, New Land Media, Visual Europe) üzletrészeiről, és felajánlotta azokat – értéküket kb. 80 milliárd forintra becsülve –, valamint magántőkealap-befektetéseit az államnak, miután bankszámláikat zárolták. A cégek ellen büntetőeljárás és végrehajtás indult, a Miniszterelnökség, a közmédia és a Nemzeti Rendezvényszervező Ügynökség is felmondta a szerződéseit; a CRCB elemzése szerint 2011 óta ~1135 milliárd forintnyi közpénzhez jutottak.",
@@ -539,7 +539,7 @@ const ADATOK = {
       visszafizetett_szoveg: "Nyomoznak az ügyében – gyanúsított még nincs",
       kapcsolatok: [
         { nev: "Matolcsy György", szerep: "édesapja, a volt MNB-elnök", kepek: ["images/matolcsy-gyorgy-kis.jpg"] },
-        { nev: "Somlai Bálint", szerep: "üzlettárs – az elveszett pénzek egyik kulcsfigurája", kepek: [] },
+        { nev: "Somlai Bálint", szerep: "üzlettárs – az elveszett pénzek egyik kulcsfigurája", kepek: ["images/somlai-balint-kis.jpg"] },
         { nev: "Központi Nyomozó Főügyészség", szerep: "a Matolcsy-körnél házkutatást tartó nyomozóhatóság", kepek: [] }
       ],
       indok: "A jegybanki alapítványok (PADME) 266+127,5 milliárd forintjának ügyében több mint másfél éve folyik nyomozás különösen jelentős vagyoni hátrányt okozó hűtlen kezelés miatt. 2026. szeptember 22-én a KNYF házkutatást és lefoglalást tartott a Matolcsy-körnél – gyanúsítotti kihallgatás eddig nem volt. Az ügyben 97 magánszemély, 36 cég és 11 magántőkealap érintett, 91,8 milliárd forintnyi készpénz és értékpapír került biztosítás alá. Ádám luxus életmódjáról ismert, dubaji cégéhez került a Vörösmarty téri ingatlan, 2025-ben holdingja 407 milliós nyereséget és 36,6 milliárdos eszközállományt mutatott ki; állítása szerint bevételei legálisak, tartózkodási engedéllyel él az Egyesült Arab Emírségekben, és kész együttműködni a hatóságokkal.",
@@ -569,9 +569,9 @@ const ADATOK = {
       visszafizetett_szoveg: "Felmentve – most inkább tanúskodik",
       indok: "2026 júniusban lemondott a Központi Nyomozó Főügyészség éléről. Október elején Magyar Péter miniszterelnök nyilvánosan számon kérte rajta a 2024-es ügyészi intézkedéseket: szerinte Fürcht Rogán Antalt tisztázta a Völner–Schadl-ügyben, és egy hajléktalanszállásos incidensből próbált súlyosabb bűncselekményt kreálni, hogy ellehetetlenítse a választási indulást. Meg is gyanúsították azzal, hogy Rogán Antalékat kivágta a nyomozati ügyekből – ebből azonban felmentették, így most már inkább tanúskodik: október 12-én bejelentette, kész részletes vallomást tenni a Rogán–Schadl–Völner-ügyben és az iratok átírására tett kísérletekről, október 18-án pedig soron kívül hallgatják meg. Az ügyészség eközben október 15-én felfüggesztette ügyészi állásából, és fegyelmi eljárást indított ellene, mert „egyoldalú értelmezéssel” hozott nyilvánosságra információkat egy folyamatban lévő büntetőügyben.",
       kapcsolatok: [
-        { nev: "Rogán Antal", szerep: "kabinetminiszter – őt „vágta ki” az ügyekből (állítólag)", kepek: [] },
-        { nev: "Magyar Péter", szerep: "miniszterelnök – ő állította ki a szorítóból", kepek: [] },
-        { nev: "Lajtár István", szerep: "legfőbb ügyész-helyettes – felfüggesztette és fegyelmit indított", kepek: [] }
+        { nev: "Rogán Antal", szerep: "kabinetminiszter – őt „vágta ki” az ügyekből (állítólag)", kepek: ["images/rogan-antal-kis.jpg"] },
+        { nev: "Magyar Péter", szerep: "miniszterelnök – ő állította ki a szorítóból", kepek: ["images/magyar-peter-kis.jpg"] },
+        { nev: "Lajtár István", szerep: "legfőbb ügyész-helyettes – felfüggesztette és fegyelmit indított", kepek: ["images/lajtar-istvan-kis.jpg"] }
       ],
       kategoriak: ["tanu"]
     },
@@ -618,7 +618,7 @@ const ADATOK = {
       visszafizetett_szoveg: "100 000 000 Ft",
       kapcsolatok: [
         { nev: "Deák Bill Gyula", szerep: "kedvezményezett", kepek: ["images/deak-bill-gyula-kis.jpg"] },
-        { nev: "Balásy Gyula", szerep: "a cégháló középpontjában – cégeit átadta az államnak", kepek: [] }
+        { nev: "Balásy Gyula", szerep: "a cégháló középpontjában – cégeit átadta az államnak", kepek: ["images/balasy-gyula-kis.jpg"] }
       ],
       indok: "A „legenda nemzeti turné” elnevezésű projekt kapott 100 millió forintot. Az összeg a Balásy Gyula érdekeltségébe tartozó cégeken keresztül csorgott, a NAV a turné számláit is vizsgálja; a pénzt eddig nem adta vissza.",
       kategoriak: ["kapta"]
@@ -651,7 +651,7 @@ const ADATOK = {
       visszafizetett_szoveg: "500 000 000 Ft",
       kapcsolatok: [
         { nev: "Mága Zoltán", szerep: "hegedűművész, aki a fotósa fellépésein kíséri", kepek: ["images/maga-zoltan-kis.jpg"] },
-        { nev: "Balásy Gyula", szerep: "a céghálóban szereplő rendezvényszervező", kepek: [] }
+        { nev: "Balásy Gyula", szerep: "a céghálóban szereplő rendezvényszervező", kepek: ["images/balasy-gyula-kis.jpg"] }
       ],
       indok: "Fél milliárd forintot kapott az NKA-tól egy olyan cég, amely Mága Zoltán hivatalos fotósának a nevén volt bejegyezve – a támogatás célja „kulturális tartalomgyártás” volt. Az összeg a Balásy-birodalomhoz köthető számlázási lánc részeként jelent meg; a pénz nem került vissza.",
       kategoriak: ["kapta"]
