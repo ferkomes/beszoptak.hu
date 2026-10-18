@@ -100,10 +100,49 @@ body {
 
 .kereses:focus { outline: 2px solid var(--akkent); border-color: transparent; }
 
+.szamlalo-sor {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 22px 20px 0;
+  text-align: center;
+}
+
+.szamlalo-cim {
+  display: block;
+  color: var(--szurke);
+  font-size: .74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-bottom: 2px;
+}
+
+.szamlalo-ertek {
+  font-size: clamp(1.7rem, 4.5vw, 2.5rem);
+  font-weight: 900;
+  color: var(--vissza);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.5px;
+}
+
+.szamlalo-eveg {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--vissza);
+  margin-left: 4px;
+}
+
+.szamlalo-resz {
+  display: block;
+  color: var(--szurke);
+  font-size: .8rem;
+  margin-top: 2px;
+}
+
 .galeria {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 28px 20px 60px;
+  padding: 18px 20px 60px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 20px;

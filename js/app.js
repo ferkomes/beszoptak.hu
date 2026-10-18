@@ -13,9 +13,13 @@
   const galeria = document.getElementById("galeria");
   const szuroGomb = document.querySelectorAll(".szuro");
   const keresesMezo = document.getElementById("kereses");
+  const szamlaloMezo = document.getElementById("szamlalo");
+  const szamlaloResz = document.getElementById("szamlalo-resz");
 
   let aktivKat = "mind";
   let keresesSzoveg = "";
+  let szamlaloErtek = 0;
+  let szamlaloAnim = null;
 
   const SZINEK_PERSONA = ["#334e68", "#3e5c76", "#2f4858", "#486581", "#527d95", "#2c5282", "#3d5a80", "#4a5568"];
 
@@ -106,6 +110,35 @@
     );
   }
 
+  function szamlaloAllit(cel, darab) {
+    if (szamlaloResz) {
+      szamlaloResz.textContent = darab
+        ? darab + " szereplő adta eddig vissza"
+        : "erre a szűrésre nincs visszafizetés";
+    }
+    if (!szamlaloMezo) return;
+    if (typeof requestAnimationFrame !== "function") {
+      szamlaloErtek = cel;
+      szamlaloMezo.textContent = cel.toLocaleString("hu-HU");
+      return;
+    }
+    const kezd = szamlaloErtek;
+    const inditas = performance.now();
+    if (szamlaloAnim) cancelAnimationFrame(szamlaloAnim);
+    function leptet(most) {
+      const t = Math.min(1, (most - inditas) / 700);
+      const e = 1 - Math.pow(1 - t, 3);
+      szamlaloMezo.textContent = Math.round(kezd + (cel - kezd) * e).toLocaleString("hu-HU");
+      if (t < 1) {
+        szamlaloAnim = requestAnimationFrame(leptet);
+      } else {
+        szamlaloErtek = cel;
+        szamlaloAnim = null;
+      }
+    }
+    szamlaloAnim = requestAnimationFrame(leptet);
+  }
+
   function szur() {
     const lista = ADAT.bejegyzesek.filter(function (b) {
       const katRendben = aktivKat === "mind" || b.kategoriak.indexOf(aktivKat) !== -1;
@@ -116,6 +149,16 @@
     galeria.innerHTML = lista.length
       ? lista.map(kartyaHtml).join("")
       : '<p class="ures-uzenet">Nincs találat erre a szűrésre.</p>';
+
+    let osszeg = 0;
+    let darab = 0;
+    lista.forEach(function (b) {
+      if (b.visszafizetett != null) {
+        osszeg += b.visszafizetett;
+        darab++;
+      }
+    });
+    szamlaloAllit(osszeg, darab);
 
     szinkronizal();
   }
