@@ -752,7 +752,7 @@ const ADATOK = {
 const KATEGORIAK = {
   sitt: { nev: "Sittre került", leiras: "Elítélés / végrehajtás", szin: "#dc2626", emoji: "⛓️" },
   elozetes: { nev: "Előzetesben / őrizetben", leiras: "Gyanúsítottként őrizetbe véve, letartóztatásban", szin: "#d97706", emoji: "🚔" },
-  felkeszul: { nev: "Eljárás folyik", leiras: "Akik ellen már folyik az eljárás, de (még) nincsenek előzetesben", szin: "#8b5cf6", emoji: "⚖️" },
+  felkeszul: { nev: "Felkészül", leiras: "Akik ellen már folyik az eljárás vagy nyomoznak, de (még) nincsenek előzetesben", szin: "#8b5cf6", emoji: "⚖️" },
   tanu: { nev: "Tanúskodik (felmentve)", leiras: "Felmentették, inkább vallomást tesz a régi barátai ellen", szin: "#22d3ee", emoji: "🕊️" },
   kapta: { nev: "Kapta a pénzt", leiras: "Kedvezményezett – a pénz nála landolt, egyelőre nem adta vissza", szin: "#eab308", emoji: "💰" },
   visszafizetes: { nev: "Visszaadta a pénzt", leiras: "Önként vagy felszólításra visszautalt", szin: "#059669", emoji: "💸" }

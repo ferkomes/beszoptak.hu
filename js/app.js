@@ -83,7 +83,7 @@
     const alapCimke =
       bej.visszafizetett != null ? "Visszafizetve" :
       bej.kategoriak.indexOf("elozetes") !== -1 ? "Előzetesben" :
-      bej.kategoriak.indexOf("felkeszul") !== -1 ? "Eljárás folyik" :
+      bej.kategoriak.indexOf("felkeszul") !== -1 ? "Felkészül" :
       bej.kategoriak.indexOf("tanu") !== -1 ? "Felmentve" :
       bej.kategoriak.indexOf("kapta") !== -1 ? "Kapott összeg" :
       "Státusz";
