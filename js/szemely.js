@@ -113,7 +113,9 @@
     const talalatok = [];
     adat.bejegyzesek.forEach(function (b) {
       const fo = egyezik(b.nev, nev);
-      const kapcs = (b.kapcsolatok || []).filter(function (k) { return egyezik(k.nev, nev); });
+      const kapcs = (b.kapcsolatok || []).filter(function (k) {
+        return egyezik(k.nev, nev) && !egyezik(k.nev, b.nev);
+      });
       if (fo || kapcs.length) talalatok.push({ bej: b, fo: fo, kapcs: kapcs });
     });
 

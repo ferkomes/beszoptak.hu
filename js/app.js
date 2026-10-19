@@ -20,6 +20,8 @@
   let keresesSzoveg = "";
   let szamlaloErtek = 0;
   let szamlaloAnim = null;
+  let TELJES_OSSZEG = 0;
+  let TELJES_DARAB = 0;
 
   const SZINEK_PERSONA = ["#334e68", "#3e5c76", "#2f4858", "#486581", "#527d95", "#2c5282", "#3d5a80", "#4a5568"];
 
@@ -53,6 +55,14 @@
     return "szemely?nev=" + encodeURIComponent(nev);
   }
 
+  // Kiszűri az önmagával való kapcsolódást (a főszereplő saját magaként
+  // felsorolva a kulcsemberek között).
+  function nemSelfKapcsolatok(bej) {
+    return (bej.kapcsolatok || []).filter(function (k) {
+      return normalizal(k.nev) !== normalizal(bej.nev);
+    });
+  }
+
   function keplet(nev, kepek, logo) {
     if (kepek && kepek.length) {
       return '<img class="kep" src="' + kepek[0] + '" alt="' + nev + '" loading="lazy" title="Nagyítás" ' +
@@ -81,10 +91,14 @@
         return meta ? '<span class="bajsz ' + k + '">' + meta.emoji + " " + meta.nev + "</span>" : "";
       }).join("");
 
-    const kapcsolatok = bej.kapcsolatok.map(function (k) {
+    const kapcsLista = nemSelfKapcsolatok(bej);
+    const kapcsolatok = kapcsLista.map(function (k) {
       return '<div class="kapcsolat">' + kisAvatar(k) +
         '<span><a class="szemely-link" href="' + szemelyLink(k.nev) + '"><span class="nev">' + k.nev + '</span></a> – <span class="szerep">' + k.szerep + "</span></span></div>";
     }).join("");
+    const kapcsBlock = kapcsLista.length
+      ? '<div class="kapcsolatok"><div class="reszlecim">Kapcsolódó kulcsemberek</div><div class="kapcsolat-lista">' + kapcsolatok + "</div></div>"
+      : "";
 
     const ertek = bej.visszafizetett != null ? formatOsszeg(bej.visszafizetett) : bej.visszafizetett_szoveg;
     const szoveges = bej.visszafizetett == null;
@@ -102,7 +116,7 @@
       '<div class="kategoriak">' + bajszok + "</div>" +
       '<div class="osszeg-sor"><span class="cimke">' + (bej.osszeg_cimke || alapCimke) + '</span><span class="ertek' + (szoveges ? " szoveg-ertek" : "") + '">' + ertek + "</span></div>" +
       '<div class="test">' +
-      '<div class="kapcsolatok"><div class="reszlecim">Kapcsolódó kulcsemberek</div><div class="kapcsolat-lista">' + kapcsolatok + "</div></div>" +
+      kapcsBlock +
       '<div class="indok"><div class="reszlecim">Jogcím / indok</div><p class="indok-szoveg">' + bej.indok + "</p></div>" +
       "</div></article>";
   }
@@ -110,7 +124,7 @@
   function keresesiMezoSzoveg(bej) {
     return normalizal(
       bej.nev + " " + bej.tipus + " " + bej.indok + " " +
-      bej.kapcsolatok.map(function (k) { return k.nev + " " + k.szerep; }).join(" ")
+      nemSelfKapcsolatok(bej).map(function (k) { return k.nev + " " + k.szerep; }).join(" ")
     );
   }
 
@@ -154,15 +168,9 @@
       ? lista.map(kartyaHtml).join("")
       : '<p class="ures-uzenet">Nincs találat erre a szűrésre.</p>';
 
-    let osszeg = 0;
-    let darab = 0;
-    lista.forEach(function (b) {
-      if (b.visszafizetett != null) {
-        osszeg += b.visszafizetett;
-        darab++;
-      }
-    });
-    szamlaloAllit(osszeg, darab);
+    // A visszafizetett-összeg számláló mindig a TELJES állományt mutatja,
+    // függetlenül az aktív szűréstől.
+    szamlaloAllit(TELJES_OSSZEG, TELJES_DARAB);
 
     szinkronizal();
     hashKezel();
@@ -234,6 +242,14 @@
     ADAT = adat;
     KATEG = adat.kategoriak || HELYI_KATEG || {};
     FOK = adat.fokategoriak || HELYI_FOK || {};
+    TELJES_OSSZEG = 0;
+    TELJES_DARAB = 0;
+    adat.bejegyzesek.forEach(function (b) {
+      if (b.visszafizetett != null) {
+        TELJES_OSSZEG += b.visszafizetett;
+        TELJES_DARAB++;
+      }
+    });
     szur();
   }
 
