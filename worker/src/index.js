@@ -1,4 +1,11 @@
-// beszoptak.hu – API (D1) + képek (R2)
+// beszoptak.hu – API (D1) + képek (R2) + beolvasztott kosszpenz (/kozpenz)
+import { kozpenzFetch, kozpenzIndexHtml } from "./kozpenz.js";
+
+// A kosszpenz által birtokolt útvonalak (a beszoptak /api/adat és /api/admin
+// útvonalaival nem ütköznek).
+const KOZPENZ_RE =
+  /^\/api\/(data|stats|winners|monthly|top|townmonths|sankey|settlement|company|people|bounds|update|tedagg|admin\/put|admin\/status|vizsgalat\/graph)$|^\/api\/agg\/|^\/vizsgalat\/?$/;
+
 const CORS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
@@ -27,11 +34,21 @@ function base64Bytes(b64) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
     if (request.method === "OPTIONS") {
       return new Response(null, { headers: CORS });
+    }
+
+    if (url.pathname === "/kozpenz" || url.pathname === "/kozpenz/" || url.pathname === "/kozpenz/index.html") {
+      return new Response(kozpenzIndexHtml(), {
+        headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-cache" },
+      });
+    }
+
+    if (KOZPENZ_RE.test(url.pathname)) {
+      return kozpenzFetch(request, env, ctx);
     }
 
     if (url.pathname === "/api/adat") {
@@ -174,12 +191,41 @@ export default {
       return json({ ok: true, id });
     }
 
+    // Egyszeri admin import: kosszpenz KV -> R2 "kozpenz/" prefix.
+    if (url.pathname === "/api/admin/kozpenz-import" && request.method === "POST") {
+      if (!tokenOk(request, env)) return json({ hiba: "érvénytelen admin token" }, 401);
+      let törzs;
+      try {
+        törzs = await request.json();
+      } catch (e) {
+        return json({ hiba: "hibás JSON" }, 400);
+      }
+      const items = törzs && Array.isArray(törzs.items) ? törzs.items : [];
+      if (!items.length || items.length > 300) return json({ hiba: "1–300 elem szükséges" }, 400);
+      let n = 0;
+      const hibak = [];
+      for (const it of items) {
+        if (!it || typeof it.k !== "string" || typeof it.v !== "string") {
+          hibak.push("rossz elem");
+          continue;
+        }
+        await env.BESZOPTAK_IMAGES.put("kozpenz/" + it.k, it.v, {
+          httpMetadata: { contentType: "application/json; charset=utf-8" },
+        });
+        n++;
+      }
+      return json({ ok: true, mentve: n, hibak });
+    }
+
     if (url.pathname === "/") {
+      if (env.ASSETS) return env.ASSETS.fetch(request);
       return new Response(
         "beszoptak.hu API – /api/adat · /kepek/<fajl>",
         { headers: CORS }
       );
     }
+
+    if (env.ASSETS) return env.ASSETS.fetch(request);
 
     return new Response("Nincs ilyen útvonal", { status: 404, headers: CORS });
   },

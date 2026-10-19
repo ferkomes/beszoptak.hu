@@ -30,7 +30,31 @@ body {
   text-align: center;
 }
 
-.fejlec-belseje { max-width: 1100px; margin: 0 auto; }
+.fejlec-belseje { max-width: 1100px; margin: 0 auto; position: relative; }
+
+.fejlec-link {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--keret);
+  background: rgba(255, 255, 255, .04);
+  color: var(--szoveg);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: .9rem;
+  white-space: nowrap;
+}
+
+.fejlec-link:hover { border-color: var(--akkent); color: var(--akkent); }
+
+@media (max-width: 640px) {
+  .fejlec-link { position: static; display: inline-flex; margin: 16px auto 0; }
+}
 
 .logo {
   font-size: clamp(2.2rem, 6vw, 3.6rem);

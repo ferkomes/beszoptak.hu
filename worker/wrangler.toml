@@ -10,3 +10,9 @@ database_id = "b22d2b70-4ab2-4a5a-98a0-d3a2e4b392f7"
 [[r2_buckets]]
 binding = "BESZOPTAK_IMAGES"
 bucket_name = "beszoptak-images"
+
+# A statikus oldal (index.html, css/, js/, images/) kiszolgálása ugyanerről a
+# worker-domainről, hogy a /kozpenz menüpont azonos originen működjön.
+[assets]
+directory = "../"
+binding = "ASSETS"
