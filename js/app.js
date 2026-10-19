@@ -50,19 +50,19 @@
   }
 
   function keplet(nev, kepek, logo) {
+    if (kepek && kepek.length) {
+      return '<img class="kep" src="' + kepek[0] + '" alt="' + nev + '" loading="lazy" title="Nagyítás" ' +
+        'onerror="this.outerHTML=\'<div class=&quot;monogram&quot; style=&quot;background:' + monogramSzin(nev) + '&quot;>' + monogramBetu(nev) + "</div>\" >";
+    }
     if (logo) {
       return '<div class="monogram logo-tipus" style="background:' + logo.szin + '" title="' + logo.szoveg + '">' + logo.betu + "</div>";
-    }
-    if (kepek && kepek.length) {
-      return '<img class="kep" src="' + kepek[0] + '" alt="' + nev + '" loading="lazy" ' +
-        'onerror="this.outerHTML=\'<div class=&quot;monogram&quot; style=&quot;background:' + monogramSzin(nev) + '&quot;>' + monogramBetu(nev) + "</div>\" >";
     }
     return '<div class="monogram" style="background:' + monogramSzin(nev) + '">' + monogramBetu(nev) + "</div>";
   }
 
   function kisAvatar(kapcs) {
     if (kapcs.kepek && kapcs.kepek.length) {
-      return '<img class="kis-kep" src="' + kapcs.kepek[0] + '" alt="' + kapcs.nev + '" loading="lazy" ' +
+      return '<img class="kis-kep" src="' + kapcs.kepek[0] + '" alt="' + kapcs.nev + '" loading="lazy" title="Nagyítás" ' +
         'onerror="this.outerHTML=\'<div class=&quot;kis-monogram&quot; style=&quot;background:' + monogramSzin(kapcs.nev) + '&quot;>' + monogramBetu(kapcs.nev) + "</div>\" >";
     }
     return '<div class="kis-monogram" style="background:' + monogramSzin(kapcs.nev) + '">' + monogramBetu(kapcs.nev) + "</div>";
@@ -168,6 +168,53 @@
       g.classList.toggle("aktiv", g.dataset.kat === aktivKat);
     });
   }
+
+  // Képnagyító
+  const nagyito = document.getElementById("nagyito");
+  const nagyitoKep = document.getElementById("nagyito-kep");
+  const nagyitoFelirat = document.getElementById("nagyito-felirat");
+
+  function nagyitNyit(img) {
+    const eredeti = img.src;
+    const nagyMeret = img.classList.contains("kis-kep")
+      ? eredeti.replace(/-kis(\.\w+)([?#].*)?$/, "$1$2")
+      : eredeti;
+    const tartalek = nagyMeret === eredeti ? null : eredeti;
+    nagyitoKep.onerror = function () {
+      if (tartalek && nagyitoKep.src !== tartalek) {
+        nagyitoKep.src = tartalek;
+      } else {
+        nagyitoKep.onerror = null;
+      }
+    };
+    nagyitoKep.src = nagyMeret;
+    nagyitoFelirat.textContent = img.alt || "";
+    nagyito.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+
+  function nagyitZar() {
+    nagyito.hidden = true;
+    nagyitoKep.onerror = null;
+    nagyitoKep.src = "";
+    document.body.style.overflow = "";
+  }
+
+  galeria.addEventListener("click", function (e) {
+    const img = e.target.closest ? e.target.closest("img.kep, img.kis-kep") : null;
+    if (img) {
+      e.preventDefault();
+      nagyitNyit(img);
+    }
+  });
+
+  nagyito.addEventListener("click", function (e) {
+    if (e.target === nagyito || (e.target.closest && e.target.closest(".nagyito-zar"))) nagyitZar();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && nagyito && !nagyito.hidden) nagyitZar();
+  });
 
   function init(adat) {
     ADAT = adat;

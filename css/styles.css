@@ -340,3 +340,60 @@ body {
   .szurok { gap: 6px; }
   .szuro { font-size: .8rem; padding: 7px 12px; }
 }
+
+/* Képnagyító (lightbox) */
+.kep, .kis-kep { cursor: zoom-in; transition: filter .15s ease, transform .15s ease; }
+.kep:hover { filter: brightness(1.18); }
+.kis-kep:hover { filter: brightness(1.25); transform: scale(1.18); }
+
+.nagyito {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(4, 7, 11, .93);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: zoom-out;
+}
+
+.nagyito[hidden] { display: none; }
+
+.nagyito figure {
+  max-width: min(1100px, 96vw);
+  text-align: center;
+  cursor: default;
+}
+
+.nagyito img {
+  max-width: 100%;
+  max-height: 84vh;
+  border-radius: 12px;
+  border: 1px solid var(--keret);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .65);
+  background: var(--kartya);
+}
+
+.nagyito figcaption {
+  margin-top: 12px;
+  color: var(--szurke);
+  font-size: .95rem;
+}
+
+.nagyito-zar {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--keret);
+  background: var(--kartya);
+  color: var(--szoveg);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.nagyito-zar:hover { background: #1c2632; }

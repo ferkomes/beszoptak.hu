@@ -540,7 +540,7 @@ const ADATOK = {
       kapcsolatok: [
         { nev: "Matolcsy György", szerep: "édesapja, a volt MNB-elnök", kepek: ["images/matolcsy-gyorgy-kis.jpg"] },
         { nev: "Somlai Bálint", szerep: "üzlettárs – az elveszett pénzek egyik kulcsfigurája", kepek: ["images/somlai-balint-kis.jpg"] },
-        { nev: "Központi Nyomozó Főügyészség", szerep: "a Matolcsy-körnél házkutatást tartó nyomozóhatóság", kepek: [] }
+        { nev: "Központi Nyomozó Főügyészség", szerep: "a Matolcsy-körnél házkutatást tartó nyomozóhatóság", kepek: ["images/kozponti-nyomozo-fougyeszseg-kis.jpg"] }
       ],
       indok: "A jegybanki alapítványok (PADME) 266+127,5 milliárd forintjának ügyében több mint másfél éve folyik nyomozás különösen jelentős vagyoni hátrányt okozó hűtlen kezelés miatt. 2026. szeptember 22-én a KNYF házkutatást és lefoglalást tartott a Matolcsy-körnél – gyanúsítotti kihallgatás eddig nem volt. Az ügyben 97 magánszemély, 36 cég és 11 magántőkealap érintett, 91,8 milliárd forintnyi készpénz és értékpapír került biztosítás alá. Ádám luxus életmódjáról ismert, dubaji cégéhez került a Vörösmarty téri ingatlan, 2025-ben holdingja 407 milliós nyereséget és 36,6 milliárdos eszközállományt mutatott ki; állítása szerint bevételei legálisak, tartózkodási engedéllyel él az Egyesült Arab Emírségekben, és kész együttműködni a hatóságokkal.",
       kategoriak: ["felkeszul"]

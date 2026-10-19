@@ -4,6 +4,15 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+# Admin (admin.html) feltoltesek atvezetese, csak ha a data.js tiszta (nem lokal modositas).
+if [ -z "$(git status --porcelain -- js/data.js 2>/dev/null)" ]; then
+  echo "== Import API -> js/data.js (admin-feltoltesek) =="
+  node scripts/import-db.mjs || echo "   (import kihagyva: API nem elerheto)"
+else
+  echo "== Import kihagyva: a data.js helyben modositott =="
+echo "   Figyelem: ha admin feltoltottet azota, ez a lepes felulirhatja. Futas elott: node scripts/import-db.mjs"
+fi
+
 echo "== Export data.js -> SQL =="
 node scripts/export-db.mjs > worker/data.sql
 

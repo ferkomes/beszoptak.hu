@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Képkezelő – beszoptak.hu (admin)</title>
+<style>
+:root { --hatter:#0b0f14; --kartya:#131a23; --keret:#232d3b; --szoveg:#e7edf5; --szurke:#8b98a9; --zold:#059669; --piros:#dc2626; --kek:#38bdf8; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; background:var(--hatter); color:var(--szoveg); line-height:1.5; padding:24px 16px 60px; }
+.wrap { max-width:960px; margin:0 auto; }
+h1 { font-size:1.5rem; margin-bottom:4px; }
+h1 span { color:var(--kek); }
+.alcim { color:var(--szurke); font-size:.9rem; margin-bottom:20px; }
+.alcim a { color:var(--kek); }
+.panel { background:var(--kartya); border:1px solid var(--keret); border-radius:12px; padding:16px; margin-bottom:18px; }
+label { font-size:.85rem; color:var(--szurke); display:block; margin-bottom:4px; }
+input[type=password], input[type=search], input[type=text] {
+  width:100%; padding:9px 12px; border-radius:8px; border:1px solid var(--keret);
+  background:#0e141c; color:var(--szoveg); font-size:.95rem;
+}
+button { cursor:pointer; border:none; border-radius:8px; padding:9px 14px; font-size:.9rem; font-weight:700; }
+.gomb { background:var(--kek); color:#04121c; }
+.gomb:hover { filter:brightness(1.1); }
+.gomb.kicsi { padding:6px 10px; font-size:.8rem; }
+.torles { background:transparent; color:var(--piros); border:1px solid var(--piros); padding:6px 10px; font-size:.8rem; }
+.allasor { display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin-top:12px; font-size:.85rem; color:var(--szurke); }
+.allasor b { color:var(--szoveg); }
+.szurok { display:flex; gap:14px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
+.szurok label { display:flex; align-items:center; gap:6px; margin:0; cursor:pointer; }
+#slotlista { display:flex; flex-direction:column; gap:8px; }
+.sor {
+  display:grid; grid-template-columns:52px 1fr auto; gap:12px; align-items:center;
+  background:var(--kartya); border:1px solid var(--keret); border-radius:10px; padding:10px 12px;
+}
+.sor.hianyzik { border-color:#5b3a12; background:#17130c; }
+.sor img.mini { width:44px; height:44px; object-fit:cover; object-position:top; border-radius:8px; border:1px solid var(--keret); background:#1c2632; }
+.sor .ures { width:44px; height:44px; border-radius:8px; border:1px dashed #5b3a12; display:flex; align-items:center; justify-content:center; color:#a97c2f; font-weight:900; }
+.cim { font-weight:700; font-size:.92rem; overflow-wrap:anywhere; }
+.alcim2 { color:var(--szurke); font-size:.78rem; overflow-wrap:anywhere; }
+.chip { display:inline-block; font-size:.72rem; padding:1px 7px; border-radius:20px; margin-left:6px; vertical-align:middle; }
+.chip.hiany { background:#5b3a12; color:#f7d488; }
+.chip.logo { background:#1e3a5f; color:#9cc8f5; }
+.chip.fajl { background:#123528; color:#7ee2b8; }
+.akkcio { display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+.akkcio input[type=file] { max-width:190px; font-size:.75rem; color:var(--szurke); }
+.allapot { font-size:.75rem; color:var(--szurke); width:100%; text-align:right; }
+.allapot.hiba { color:#fca5a5; }
+.allapot.ok { color:#7ee2b8; }
+#eszkozsor { position:sticky; top:0; z-index:5; background:var(--hatter); padding:10px 0; }
+@media (max-width:640px){ .sor { grid-template-columns:44px 1fr; } .akkcio { grid-column:1/-1; justify-content:flex-start; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Kép<span>kezelő</span></h1>
+  <p class="alcim">beszoptak.hu – képek feltöltése és csatolása a szereplőkhöz · <a href="index.html">← vissza az oldalra</a></p>
+
+  <div class="panel" id="belepes">
+    <label for="token">Admin token</label>
+    <div style="display:flex; gap:8px;">
+      <input type="password" id="token" placeholder="ADMIN_TOKEN" autocomplete="off">
+      <button class="gomb" id="belep">Belépés</button>
+    </div>
+    <p class="alcim" style="margin:10px 0 0;">A token a Cloudflare Worker titka (<code>ADMIN_TOKEN</code>). Csak ebben a böngészőben (sessionStorage) tárolódik.</p>
+  </div>
+
+  <div id="felulet" hidden>
+    <div class="panel" id="eszkozsor">
+      <div class="szurok">
+        <input type="search" id="kereses" placeholder="Keresés névvel…" style="flex:1; min-width:200px;">
+        <label><input type="checkbox" id="csakHianyzo" checked> csak a hiányzók</label>
+        <label><input type="checkbox" id="mindenSlot" checked> azonos nevű üres slotok kitöltése</label>
+        <button class="gomb kicsi" id="ujratoltes">Újratöltés</button>
+      </div>
+      <div class="allasor">
+        <span>Összes slot: <b id="dbOsszes">–</b></span>
+        <span>Hiányzik: <b id="dbHianyzo">–</b></span>
+        <span id="uzenet"></span>
+      </div>
+    </div>
+    <div id="slotlista"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const API = "https://beszoptak-api.ferkomes.workers.dev";
+  const TOKEN_MEGY = "beszoptak_admin_token";
+  let ADAT = null;
+  let TOKEN = sessionStorage.getItem(TOKEN_MEGY) || "";
+
+  const $ = (id) => document.getElementById(id);
+  const belepes = $("belepes"), felulet = $("felulet"), lista = $("slotlista");
+
+  function slug(szoveg) {
+    return (szoveg || "")
+      .toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/ő/g, "o").replace(/ű/g, "u")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "") || "kep";
+  }
+
+  function alapNeve(slot) {
+    if (slot.kepek && slot.kepek.length) {
+      const resz = slot.kepek[0].split("/").pop().split("?")[0];
+      return resz.replace(/-kis(\.\w+)$/, "$1").replace(/\.\w+$/, "");
+    }
+    return slot.tipus === "kartya" ? slug(slot.id) : slug(slot.nev);
+  }
+
+  function slotokEpit(adat) {
+    const kimenet = [];
+    adat.bejegyzesek.forEach(function (b) {
+      kimenet.push({
+        id: b.id, tipus: "kartya", slot: "kartya",
+        nev: b.nev, cim: b.nev, alcim: b.tipus,
+        kepek: b.kepek || [], logoVan: !!b.logo,
+      });
+      (b.kapcsolatok || []).forEach(function (k, i) {
+        kimenet.push({
+          id: b.id, tipus: "kapcsolat", slot: "kapcsolat:" + i,
+          nev: k.nev, cim: k.nev, alcim: b.nev + " – " + k.szerep,
+          kepek: k.kepek || [], logoVan: false,
+        });
+      });
+    });
+    return kimenet;
+  }
+
+  function szures(sl) {
+    const keres = slug($("kereses").value);
+    const csakHianyzo = $("csakHianyzo").checked;
+    return sl.filter(function (s) {
+      if (csakHianyzo && s.kepek.length) return false;
+      if (keres && slug(s.cim + " " + s.alcim).indexOf(keres) === -1) return false;
+      return true;
+    });
+  }
+
+  function rajzol() {
+    if (!ADAT) return;
+    const mind = slotokEpit(ADAT);
+    $("dbOsszes").textContent = mind.length;
+    $("dbHianyzo").textContent = mind.filter(function (s) { return !s.kepek.length; }).length;
+    const sorok = szures(mind);
+    lista.innerHTML = "";
+    if (!sorok.length) {
+      lista.innerHTML = '<div class="panel" style="color:var(--szurke)">Nincs megjeleníthető slot.</div>';
+      return;
+    }
+    sorok.forEach(function (s) { lista.appendChild(sorHtml(s)); });
+  }
+
+  function sorHtml(s) {
+    const div = document.createElement("div");
+    div.className = "sor" + (s.kepek.length ? "" : " hianyzik");
+    const kepek = s.kepek;
+    const bal = kepek.length
+      ? '<img class="mini" src="' + kepek[0] + '" alt="" onerror="this.style.visibility=\'hidden\'">'
+      : '<div class="ures" title="Hiányzik">+</div>';
+    const allapot = kepek.length
+      ? '<span class="chip fajl">' + kepek[0].split("/").pop() + "</span>"
+      : '<span class="chip hiany">hiányzik</span>';
+    const logoChip = s.logoVan ? '<span class="chip logo">logó felülírja</span>' : "";
+    div.innerHTML =
+      bal +
+      '<div><div class="cim">' + s.cim + allapot + logoChip + "</div>" +
+      '<div class="alcim2">' + s.alcim + "</div></div>" +
+      '<div class="akkcio">' +
+      '<input type="file" accept="image/*">' +
+      '<button class="gomb kicsi">Feltöltés</button>' +
+      (kepek.length ? '<button class="torles">Törlés</button>' : "") +
+      '<div class="allapot"></div></div>';
+
+    const allapotMezo = div.querySelector(".allapot");
+    const gomb = div.querySelector(".gomb");
+    const torles = div.querySelector(".torles");
+    const fajlMezo = div.querySelector("input[type=file]");
+
+    gomb.addEventListener("click", function () {
+      const fajl = fajlMezo.files[0];
+      if (!fajl) { allapotMezo.textContent = "Válassz egy képfájlt."; allapotMezo.className = "allapot hiba"; return; }
+      gomb.disabled = true;
+      allapotMezo.textContent = "Feldolgozás…";
+      allapotMezo.className = "allapot";
+      feltolt(s, fajl)
+        .then(function (uzenet) {
+          allapotMezo.textContent = uzenet;
+          allapotMezo.className = "allapot ok";
+          rajzol();
+        })
+        .catch(function (hiba) {
+          allapotMezo.textContent = "Hiba: " + hiba.message;
+          allapotMezo.className = "allapot hiba";
+          gomb.disabled = false;
+        });
+    });
+
+    if (torles) {
+      torles.addEventListener("click", function () {
+        torles.disabled = true;
+        frissitSlot(s, [])
+          .then(function () { rajzol(); })
+          .catch(function (hiba) {
+            allapotMezo.textContent = "Hiba: " + hiba.message;
+            allapotMezo.className = "allapot hiba";
+            torles.disabled = false;
+          });
+      });
+    }
+    return div;
+  }
+
+  function keresHeaders() {
+    return { "Content-Type": "application/json", "Authorization": "Bearer " + TOKEN };
+  }
+
+  async function keresFeltoltes(fajlok) {
+    const r = await fetch(API + "/api/admin/kep", {
+      method: "POST", headers: keresHeaders(),
+      body: JSON.stringify({ fajlok: fajlok }),
+    });
+    const d = await r.json().catch(function () { return {}; });
+    if (!r.ok) throw new Error(d.hiba || ("HTTP " + r.status));
+    return d;
+  }
+
+  async function frissitSlot(s, kepek) {
+    const r = await fetch(API + "/api/admin/frissit", {
+      method: "POST", headers: keresHeaders(),
+      body: JSON.stringify({ id: s.id, slot: s.slot, kepek: kepek }),
+    });
+    const d = await r.json().catch(function () { return {}; });
+    if (!r.ok) throw new Error(d.hiba || ("HTTP " + r.status));
+    return d;
+  }
+
+  function meretez(fajl, maxmeret) {
+    return new Promise(function (meg, utasit) {
+      const img = new Image();
+      const url = URL.createObjectURL(fajl);
+      img.onload = function () {
+        const arany = Math.min(1, maxmeret / Math.max(img.naturalWidth, img.naturalHeight));
+        const cv = document.createElement("canvas");
+        cv.width = Math.max(1, Math.round(img.naturalWidth * arany));
+        cv.height = Math.max(1, Math.round(img.naturalHeight * arany));
+        cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+        URL.revokeObjectURL(url);
+        cv.toBlob(function (blob) {
+          if (!blob) { utasit(new Error("nem sikerült JPEG-et csinálni")); return; }
+          blob.arrayBuffer().then(function (buf) {
+            const u8 = new Uint8Array(buf);
+            let bin = "";
+            for (let i = 0; i < u8.length; i += 0x8000) {
+              bin += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
+            }
+            meg(btoa(bin));
+          });
+        }, "image/jpeg", 0.85);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); utasit(new Error("a kép megnyitása nem sikerült")); };
+      img.src = url;
+    });
+  }
+
+  async function feltolt(s, fajl) {
+    if (!fajl.type.startsWith("image/")) throw new Error("csak képfájl engedélyezett");
+    const base = alapNeve(s);
+    const nagy = await meretez(fajl, 500);
+    const kis = await meretez(fajl, 120);
+    const fajlok = [
+      { nev: base + ".jpg", base64: nagy, tipus: "image/jpeg" },
+      { nev: base + "-kis.jpg", base64: kis, tipus: "image/jpeg" },
+    ];
+    await keresFeltoltes(fajlok);
+    const celUtval = s.tipus === "kartya" ? "images/" + base + ".jpg" : "images/" + base + "-kis.jpg";
+    await frissitSlot(s, [celUtval]);
+
+    let plusz = 0;
+    if ($("mindenSlot").checked && s.tipus === "kapcsolat" && s.kepek.length === 0) {
+      const tobbi = slotokEpit(ADAT).filter(function (m) {
+        return m.tipus === "kapcsolat" && m.nev === s.nev && m.kepek.length === 0;
+      });
+      for (const m of tobbi) {
+        try {
+          await frissitSlot(m, ["images/" + base + "-kis.jpg"]);
+          plusz++;
+        } catch (e) {}
+      }
+    }
+    return "Kész: " + celUtval + (plusz ? " (+" + plusz + " ugyanilyen slot)" : "");
+  }
+
+  async function betolt() {
+    const r = await fetch(API + "/api/adat");
+    if (!r.ok) throw new Error("API HTTP " + r.status);
+    const d = await r.json();
+    if (!d || !d.bejegyzesek) throw new Error("üres válasz");
+    ADAT = d;
+    rajzol();
+  }
+
+  async function belepek() {
+    TOKEN = $("token").value.trim();
+    if (!TOKEN) return;
+    try {
+      await betolt();
+      sessionStorage.setItem(TOKEN_MEGY, TOKEN);
+      belepes.hidden = true;
+      felulet.hidden = false;
+    } catch (e) {
+      sessionStorage.removeItem(TOKEN_MEGY);
+      TOKEN = "";
+      alert("Belépés sikertelen: " + e.message);
+    }
+  }
+
+  $("belep").addEventListener("click", belepek);
+  $("token").addEventListener("keydown", function (e) { if (e.key === "Enter") belepek(); });
+  $("kereses").addEventListener("input", rajzol);
+  $("csakHianyzo").addEventListener("change", rajzol);
+  $("ujratoltes").addEventListener("click", function () { betolt().catch(function (e) { alert(e.message); }); });
+
+  if (TOKEN) {
+    betolt()
+      .then(function () { belepes.hidden = true; felulet.hidden = false; })
+      .catch(function () { sessionStorage.removeItem(TOKEN_MEGY); TOKEN = ""; });
+  }
+})();
+</script>
+</body>
+</html>
