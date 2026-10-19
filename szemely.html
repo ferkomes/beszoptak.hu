@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Személy – beszoptak.hu</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Egy szereplő profilja: minden eset, amelyben érintett, valamint céges érintettsége.">
+  <link rel="preconnect" href="https://upload.wikimedia.org">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="fejlec">
+    <div class="fejlec-belseje">
+      <a class="fejlec-link" href="/">← Vissza a főoldalra</a>
+      <h1 class="logo"><a class="szemely-link" href="/">beszoptak<span>.hu</span></a></h1>
+      <p class="alcim">Személyi profil – minden érintettség egy helyen</p>
+    </div>
+  </header>
+
+  <main id="szemely" class="szemely-oldal"></main>
+
+  <footer class="labjegyzet">
+    <p>Forrás: <a href="https://github.com/ferkomes/beszoptak.hu" target="_blank" rel="noopener">github.com/ferkomes/beszoptak.hu</a> ·
+    Adatok tájékoztató jellegűek, nyilvános híradások alapján ·
+    Képek: Wikipédia / Wikimedia Commons (CC)</p>
+  </footer>
+
+  <div class="nagyito" id="nagyito" hidden>
+    <button class="nagyito-zar" id="nagyito-zar" aria-label="Bezárás">×</button>
+    <figure>
+      <img id="nagyito-kep" alt="">
+      <figcaption id="nagyito-felirat"></figcaption>
+    </figure>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/szemely.js"></script>
+</body>
+</html>

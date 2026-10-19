@@ -49,6 +49,10 @@
     return ertek.toLocaleString("hu-HU") + " Ft";
   }
 
+  function szemelyLink(nev) {
+    return "szemely?nev=" + encodeURIComponent(nev);
+  }
+
   function keplet(nev, kepek, logo) {
     if (kepek && kepek.length) {
       return '<img class="kep" src="' + kepek[0] + '" alt="' + nev + '" loading="lazy" title="Nagyítás" ' +
@@ -79,7 +83,7 @@
 
     const kapcsolatok = bej.kapcsolatok.map(function (k) {
       return '<div class="kapcsolat">' + kisAvatar(k) +
-        '<span><span class="nev">' + k.nev + '</span> – <span class="szerep">' + k.szerep + "</span></span></div>";
+        '<span><a class="szemely-link" href="' + szemelyLink(k.nev) + '"><span class="nev">' + k.nev + '</span></a> – <span class="szerep">' + k.szerep + "</span></span></div>";
     }).join("");
 
     const ertek = bej.visszafizetett != null ? formatOsszeg(bej.visszafizetett) : bej.visszafizetett_szoveg;
@@ -92,9 +96,9 @@
       bej.kategoriak.indexOf("kapta") !== -1 ? "Kapott összeg" :
       "Státusz";
 
-    return '<article class="kartya" data-kat="' + bej.kategoriak.join(" ") + '" data-fokat="' + bej.fokategoria + '">' +
+    return '<article class="kartya" id="bej-' + bej.id + '" data-kat="' + bej.kategoriak.join(" ") + '" data-fokat="' + bej.fokategoria + '">' +
       '<div class="kartya-fej">' + keplet(bej.nev, bej.kepek, bej.logo) +
-      '<div class="kartya-cim"><h2>' + bej.nev + '</h2><div class="tipus">' + bej.tipus + "</div></div></div>" +
+      '<div class="kartya-cim"><h2><a class="szemely-link" href="' + szemelyLink(bej.nev) + '">' + bej.nev + "</a></h2><div class=\"tipus\">" + bej.tipus + "</div></div></div>" +
       '<div class="kategoriak">' + bajszok + "</div>" +
       '<div class="osszeg-sor"><span class="cimke">' + (bej.osszeg_cimke || alapCimke) + '</span><span class="ertek' + (szoveges ? " szoveg-ertek" : "") + '">' + ertek + "</span></div>" +
       '<div class="test">' +
@@ -161,6 +165,16 @@
     szamlaloAllit(osszeg, darab);
 
     szinkronizal();
+    hashKezel();
+  }
+
+  function hashKezel() {
+    if (!location.hash) return;
+    const cel = document.getElementById(location.hash.slice(1));
+    if (!cel) return;
+    cel.scrollIntoView({ behavior: "smooth", block: "center" });
+    cel.classList.add("kiemelt");
+    setTimeout(function () { cel.classList.remove("kiemelt"); }, 2600);
   }
 
   function szinkronizal() {
@@ -236,6 +250,8 @@
     keresesSzoveg = keresesMezo.value.trim();
     szur();
   });
+
+  window.addEventListener("hashchange", hashKezel);
 
   const idok = typeof AbortSignal !== "undefined" && AbortSignal.timeout ? AbortSignal.timeout(5000) : undefined;
   fetch(API, { signal: idok })

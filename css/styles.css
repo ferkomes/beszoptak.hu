@@ -421,3 +421,114 @@ body {
 }
 
 .nagyito-zar:hover { background: #1c2632; }
+
+/* Kattintható személynevek */
+.szemely-link { color: inherit; text-decoration: none; }
+.szemely-link:hover { color: var(--akkent); text-decoration: underline; }
+
+.kartya.kiemelt {
+  border-color: var(--akkent);
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, .45);
+}
+
+/* Személy-profil oldal */
+.szemely-oldal { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
+
+.szemely-fej {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background: var(--kartya);
+  border: 1px solid var(--keret);
+  border-radius: 18px;
+  padding: 20px;
+}
+
+.szemely-fej .kep,
+.szemely-fej .monogram {
+  width: 116px;
+  height: 116px;
+  border-radius: 20px;
+  font-size: 2.4rem;
+}
+
+.szemely-nev { font-size: clamp(1.6rem, 4.5vw, 2.4rem); font-weight: 900; line-height: 1.15; }
+.szemely-alcim { color: var(--szurke); margin: 6px 0 10px; }
+
+.szemely-szekcio-cim {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 30px 0 12px;
+  letter-spacing: .2px;
+}
+
+.szemely-megj { color: var(--szurke); font-size: .85rem; margin-bottom: 12px; }
+
+.szemely-eset {
+  background: var(--kartya);
+  border: 1px solid var(--keret);
+  border-radius: 16px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+}
+
+.szemely-eset-fej {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.szemely-eset-fej .kep,
+.szemely-eset-fej .monogram {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+}
+
+.szemely-eset h3 { font-size: 1.02rem; font-weight: 800; line-height: 1.25; }
+.szemely-eset .tipus { color: var(--szurke); font-size: .8rem; margin-top: 2px; }
+.szemely-eset .kategoriak { padding: 0 0 10px; }
+
+.szemely-szerep {
+  font-size: .86rem;
+  color: #c4cedb;
+  margin: 6px 0 10px;
+}
+
+.szemely-szerep b { color: var(--akkent); font-weight: 700; }
+
+.szemely-eset .osszeg-sor { margin: 0 0 10px; }
+.szemely-eset .indok { margin-bottom: 12px; }
+
+.szemely-ugras {
+  display: inline-block;
+  color: var(--akkent);
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: 700;
+}
+
+.szemely-ugras:hover { text-decoration: underline; }
+
+.szemely-ceg {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  background: #0e141c;
+  border: 1px solid var(--keret);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+}
+
+.szemely-ceg .ceg-nev { font-weight: 700; }
+.szemely-ceg .ceg-szerep { color: var(--szurke); font-size: .85rem; }
+.szemely-ceg .ceg-resz { color: var(--vissza); font-weight: 700; font-size: .9rem; white-space: nowrap; }
+
+@media (max-width: 560px) {
+  .szemely-fej { flex-direction: column; text-align: center; }
+  .szemely-fej .kategoriak { justify-content: center; }
+}
