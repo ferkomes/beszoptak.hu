@@ -5,7 +5,7 @@
 // fokategoria: "maganszemely" | "kozeleti" | "ceg"
 const ADATOK = {
   "forras": "https://github.com/ferkomes/beszoptak.hu",
-  "frissitve": "2026-10-18",
+  "frissitve": "2026-10-19",
   "bejegyzesek": [
     {
       "id": "kis-grofo",
@@ -762,7 +762,8 @@ const ADATOK = {
       ],
       "indok": "Mentelmi jogának felfüggesztése (2026. szept. 28.) után este őrizetbe vették, majd letartóztatták. A gyanú szerint a Kiemelt Kulturális Programok Ideiglenes Kollégiumát miniszterként, az NKA elnökeként vezetőjeként 1079 támogatói okirattal, 17,3 milliárd forintnyi vagyoni hátránnyal tömegesen, a jogszabályi céloktól eltérően – részben fideszes kampányeseményekre, választókerületenként – osztott szét. Letartóztatása jogerős és végleges (Kecskeméti Törvényszék, 2026. okt. 13.).",
       "kategoriak": [
-        "elozetes"
+        "elozetes",
+        "felkeszul"
       ]
     },
     {
@@ -841,7 +842,8 @@ const ADATOK = {
       ],
       "indok": "A botrány kirobbanása után ő volt az első, aki lemondott: az NKA alelnöki posztjáról távozott, majd 2026. június 23-án őrizetbe vették és gyanúsítottként hallgatták ki Kecskeméten. Hűtlen kezeléssel gyanúsítják, védője szerint részletes vallomást tett, letartóztatását kezdeményezték.",
       "kategoriak": [
-        "elozetes"
+        "elozetes",
+        "felkeszul"
       ]
     },
     {
@@ -879,7 +881,8 @@ const ADATOK = {
       ],
       "indok": "A 17 milliárd forint kiosztásáról döntő ideiglenes kollégium vezetőjeként 2026. június 23-án vették őrizetbe; letartóztatásban maradt. 2010–2019 között a XVIII. kerület polgármestere, korábbi fideszes országgyűlési képviselő volt, a botrány kirobbanása óta (május 6.) nem a Lechner Kft. munkavállalója.",
       "kategoriak": [
-        "elozetes"
+        "elozetes",
+        "felkeszul"
       ]
     },
     {
@@ -910,7 +913,8 @@ const ADATOK = {
       ],
       "indok": "Az NKA-pályázatok lebonyolításával megbízott NKTK főigazgatója volt; Tarr Zoltán 2026. május 19-én mentette fel, június 23-án a NAV őrizetbe vette és gyanúsítottként hallgatta ki. Jogi képviselője később feljelentést tett, mondván: a támogatások egyedi kérelem alapján, szakmai egyeztetés nélkül, a főigazgató személyes utasítására kerültek kifizetésre.",
       "kategoriak": [
-        "elozetes"
+        "elozetes",
+        "felkeszul"
       ]
     },
     {
@@ -941,7 +945,8 @@ const ADATOK = {
       ],
       "indok": "A 17 milliárd forint kiosztásáról döntő Kiemelt Kulturális Programok Ideiglenes Kollégiumának tagja; 2026. június 23-án a NAV őrizetbe vette és hűtlen kezelés gyanújával hallgatta ki a minisztériumban tartott kutatásokat követően.",
       "kategoriak": [
-        "elozetes"
+        "elozetes",
+        "felkeszul"
       ]
     },
     {
@@ -972,7 +977,8 @@ const ADATOK = {
       ],
       "indok": "A minisztériumi közigazgatási államtitkárságról a döntőbizottsági tagként került a Kiemelt Kulturális Programok Ideiglenes Kollégiumába; a NAV 2026. június 23-án őt is őrizetbe vette és gyanúsítottként hallgatta ki a 17 milliárdos NKA-ügyben.",
       "kategoriak": [
-        "elozetes"
+        "elozetes",
+        "felkeszul"
       ]
     },
     {
@@ -1526,6 +1532,368 @@ const ADATOK = {
       "indok": "2025-ben alapított cég kulturális programra kért 10 milliót az NKA-tól, majd visszafizette. Ügyvezetője: Márkus Kristóf.",
       "kategoriak": [
         "visszafizetes"
+      ]
+    },
+    {
+      "id": "simonka-gyorgy",
+      "nev": "Simonka György",
+      "tipus": "Volt fideszes országgyűlési képviselő",
+      "fokategoria": "kozeleti",
+      "kepek": [
+        "images/simonka-gyorgy.jpg"
+      ],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Vádemelés közel – 75/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Bűnszervezetben elkövetett, különösen jelentős költségvetési csalással vádolják; az ellene folyó büntetőperben a bíróság másodszor is nekifutott az ügynek. Az Út a börtönbe rangsorában 75/100-as indexszel a legmagasabb kockázatú szereplő, vádemelés közelinek minősítve.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "czegledy-csaba",
+      "nev": "Czeglédy Csaba",
+      "tipus": "Ügyvéd, a DK-hoz kötődő ellenzéki közszereplő",
+      "fokategoria": "kozeleti",
+      "kepek": [
+        "images/czegledy-csaba.jpg"
+      ],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Vádemelés közel – 72/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Ügyvéd, a DK-hoz kötődő ellenzéki közszereplő, korábbi önkormányzati képviselő. Az ellene folyó büntetőügyben első fokon hétéves fegyházbüntetést kapott, a fellebbviteli szakaszban az ügyészség a hét évnél szigorúbb ítéletet kért; szabadlábon védekezhet. Az Út a börtönbe rangsorában 72/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "boldog-istvan",
+      "nev": "Boldog István",
+      "tipus": "Volt fideszes országgyűlési képviselő",
+      "fokategoria": "kozeleti",
+      "kepek": [
+        "images/boldog-istvan.jpg"
+      ],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Vádemelés közel – 71/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Volt fideszes országgyűlési képviselő, korrupciós pere folyamatban van; a perben kiderült, hogy az ügyészség három hónapnyi lehallgatási anyagot nem archivált („adminisztrációs hiba”). Az Út a börtönbe rangsorában 71/100, vádemelés közel.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "hidvegi-jozsef",
+      "nev": "Hidvégi József",
+      "tipus": "Fonyód volt fideszes polgármestere",
+      "fokategoria": "kozeleti",
+      "kepek": [
+        "images/hidvegi-jozsef.jpg"
+      ],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Vádemelés közel – 70/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Fonyód volt fideszes polgármestere (2019–2024). Gazdasági csalás és pénzmosás gyanújával harminc napra letartóztatták. Az Út a börtönbe rangsorában 70/100, vádemelés közel.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "biro-ferenc",
+      "nev": "Bíró Ferenc",
+      "tipus": "Az Integritás Hatóság elnöke",
+      "fokategoria": "kozeleti",
+      "kepek": [
+        "images/biro-ferenc.jpg"
+      ],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Vádemelés közel – 68/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Az Integritás Hatóság elnöke; ellene vádat emeltek, a vádiratban letöltendő szabadságvesztést kértek. Az Út a börtönbe rangsorában 68/100, vádemelés közel.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "schadl-gyorgy",
+      "nev": "Schadl György",
+      "tipus": "A Magyar Bírósági Végrehajtói Kar volt elnöke",
+      "fokategoria": "kozeleti",
+      "kepek": [],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Vádemelés közel – 65/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "A Magyar Bírósági Végrehajtói Kar volt elnöke, a Schadl–Völner-per elsőrendű vádlottja. A vád szerint az államtitkár üzenetét vitte a végrehajtói kinevezésekről, a perben pedig egy végrehajtó arról vallott, hogyan vette fel neki a pénzt. Az Út a börtönbe rangsorában 65/100, vádemelés közel.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "volner-pal",
+      "nev": "Völner Pál",
+      "tipus": "Volt igazságügyi államtitkár, ügyvéd",
+      "fokategoria": "kozeleti",
+      "kepek": [
+        "images/volner-pal.jpg"
+      ],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Vádemelés közel – 65/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Volt igazságügyi államtitkár, a Schadl–Völner-per másodrendű vádlottja; hiába a vád, ügyvédként újra praktizálhat. Az Út a börtönbe rangsorában 65/100, vádemelés közel.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "demeter-tamas",
+      "nev": "Demeter Tamás",
+      "tipus": "A NAV volt bűnügyi és rendészeti elnökhelyettese",
+      "fokategoria": "tisztviselo",
+      "kepek": [],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 59/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "A NAV volt bűnügyi és rendészeti elnökhelyettese; az ukrán aranykonvoj-ügyhöz köthető kiszivárgott ügyészségi irat kapcsán folyik ellene eljárás. Az Út a börtönbe rangsorában 59/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "farkas-ors",
+      "nev": "Farkas Örs",
+      "tipus": "A nemzetbiztonsági szolgálatokat felügyelő volt államtitkár",
+      "fokategoria": "kozeleti",
+      "kepek": [],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 59/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "A nemzetbiztonsági szolgálatokat felügyelő volt államtitkár; az ukrán aranykonvoj-ügy kapcsán folyik ellene eljárás. Az Út a börtönbe rangsorában 59/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "hajdu-janos",
+      "nev": "Hajdu János",
+      "tipus": "A Terrorelhárítási Központ (TEK) volt főigazgatója",
+      "fokategoria": "tisztviselo",
+      "kepek": [
+        "images/hajdu-janos.jpg"
+      ],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 59/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "A Terrorelhárítási Központ (TEK) volt főigazgatója; az aranykonvoj-ügyben gyanúsítottként hallgatták ki, tanúvallomások szerint a rajtaütés idején Orbán Viktorral telefonált. Az Út a börtönbe rangsorában 59/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "orban-viktor",
+      "nev": "Orbán Viktor",
+      "tipus": "Volt miniszterelnök, a Fidesz elnöke",
+      "fokategoria": "kozeleti",
+      "kepek": [
+        "images/orban-viktor.jpg"
+      ],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 59/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Volt miniszterelnök (2010–2026), a Fidesz elnöke. Az ukrán aranykonvoj-ügyben kiszivárgott ügyészségi irat szerint a lényegi döntést és utasításokat hozó személyek között nevesítik. Az Út a börtönbe rangsorában 59/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "cegledy-gergo",
+      "nev": "Ceglédy Gergő",
+      "tipus": "MSZP-s politikus, Óbuda volt alpolgármestere",
+      "fokategoria": "kozeleti",
+      "kepek": [],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 53/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "MSZP-s politikus, Óbuda volt alpolgármestere és önkormányzati képviselője. A KNYF az óbudai korrupciós ügyben gyanúsítottként megnevezett kilenc politikus egyike. Az Út a börtönbe rangsorában 53/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "gor-csaba",
+      "nev": "Gór Csaba",
+      "tipus": "Fideszes politikus, a II. kerületi választókerület elnöke",
+      "fokategoria": "kozeleti",
+      "kepek": [
+        "images/gor-csaba.jpg"
+      ],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 53/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Fideszes politikus, a Budapest II. kerületi választókerület elnöke. Az óbudai korrupciós ügyben gyanúsítottként megnevezett politikusok egyike. Az Út a börtönbe rangsorában 53/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "kiss-laszlo",
+      "nev": "Kiss László",
+      "tipus": "Óbuda-Békásmegyer polgármestere",
+      "fokategoria": "kozeleti",
+      "kepek": [],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 53/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Óbuda-Békásmegyer (Budapest III. kerület) polgármestere. Az óbudai korrupciós ügy gyanúsítottja; a nyomozás során több politikust is őrizetbe vettek. Az Út a börtönbe rangsorában 53/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "kohegyi-istvan",
+      "nev": "Kőhegyi István",
+      "tipus": "Volt MSZP-s országgyűlési képviselő",
+      "fokategoria": "kozeleti",
+      "kepek": [],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 53/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Volt MSZP-s országgyűlési képviselő, pécsi politikus. Az óbudai korrupciós ügy gyanúsítottjai között nevezték meg. Az Út a börtönbe rangsorában 53/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "lang-zsolt",
+      "nev": "Láng Zsolt",
+      "tipus": "Budapest II. kerület volt polgármestere, fideszes országgyűlési képviselő",
+      "fokategoria": "kozeleti",
+      "kepek": [],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 53/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Budapest II. kerület volt polgármestere (2006–2019), fideszes országgyűlési képviselő. A parkbiznisz néven ismert korrupciós ügy gyanúsítottja. Az Út a börtönbe rangsorában 53/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "matisz-karoly",
+      "nev": "Matisz Károly",
+      "tipus": "A Momentum volt pártigazgatója",
+      "fokategoria": "kozeleti",
+      "kepek": [],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 53/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "A Momentum volt pártigazgatója. Az óbudai korrupciós ügyben a KNYF által gyanúsítottként megnevezett politikusok egyike; letartóztatását elrendelték. Az Út a börtönbe rangsorában 53/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "molnar-zsolt",
+      "nev": "Molnár Zsolt",
+      "tipus": "Volt MSZP-s országgyűlési képviselő",
+      "fokategoria": "kozeleti",
+      "kepek": [],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 53/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Volt MSZP-s országgyűlési képviselő. Az óbudai korrupciós ügy gyanúsítottja, letartóztatását kezdeményezték. Az Út a börtönbe rangsorában 53/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "orsi-gergely",
+      "nev": "Őrsi Gergely",
+      "tipus": "Budapest II. kerület polgármestere",
+      "fokategoria": "kozeleti",
+      "kepek": [
+        "images/orsi-gergely.jpg"
+      ],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 53/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Budapest II. kerület polgármestere. A parkbiznisz néven ismert korrupciós ügyben letartóztatták, letartóztatásának meghosszabbítását kezdeményezték. Az Út a börtönbe rangsorában 53/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "puskas-peter",
+      "nev": "Puskás Péter",
+      "tipus": "Az óbudai Fidesz elnöke, volt alpolgármester",
+      "fokategoria": "kozeleti",
+      "kepek": [],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 53/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Az óbudai (III. kerületi) Fidesz elnöke, volt óbudai alpolgármester. Az óbudai korrupciós ügy gyanúsítottja. Az Út a börtönbe rangsorában 53/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "sara-botond",
+      "nev": "Sára Botond",
+      "tipus": "Budapest főispánja, Józsefváros volt polgármestere",
+      "fokategoria": "kozeleti",
+      "kepek": [
+        "images/sara-botond.jpg"
+      ],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 53/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Budapest főispánja (kormánymegbízott), Józsefváros volt fideszes polgármestere. Vesztegetés gyanúja miatt a lakásán is házkutatást tartottak; a gyanúsítást tagadja. Az Út a börtönbe rangsorában 53/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "szkaliczki-tunde",
+      "nev": "Szkaliczki Tünde",
+      "tipus": "A Momentum volt óbudai önkormányzati képviselője",
+      "fokategoria": "kozeleti",
+      "kepek": [],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 53/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "A Momentum volt óbudai (III. kerületi) önkormányzati képviselője. Az óbudai korrupciós ügy gyanúsítottja. Az Út a börtönbe rangsorában 53/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "bona-zoltan",
+      "nev": "Bóna Zoltán",
+      "tipus": "Volt fideszes-KDNP országgyűlési képviselő",
+      "fokategoria": "kozeleti",
+      "kepek": [
+        "images/bona-zoltan.jpg"
+      ],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 49/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Volt fideszes-KDNP országgyűlési képviselő (2014–2026). Korrupció gyanúja miatt őrizetbe vették, nyomkövetőt kapott és házi őrizetbe került. Az Út a börtönbe rangsorában 49/100.",
+      "kategoriak": [
+        "felkeszul"
+      ]
+    },
+    {
+      "id": "nagy-barnabas",
+      "nev": "Nagy Barnabás",
+      "tipus": "Halásztelek polgármestere (Fidesz-KDNP)",
+      "fokategoria": "kozeleti",
+      "kepek": [
+        "images/nagy-barnabas.jpg"
+      ],
+      "visszafizetett": null,
+      "visszafizetett_szoveg": "Eljárás folyik – 49/100 kockázati index",
+      "kapcsolatok": [],
+      "indok": "Halásztelek polgármestere (Fidesz-KDNP). Vesztegetés gyanúja miatt házi őrizetbe került, bűnügyi felügyeletét később megszüntették. Az Út a börtönbe rangsorában 49/100.",
+      "kategoriak": [
+        "felkeszul"
       ]
     }
   ]
