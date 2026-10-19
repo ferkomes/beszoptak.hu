@@ -149,6 +149,31 @@ export default {
       return json({ ok: true, id, slot, kepek });
     }
 
+    if (url.pathname === "/api/adat/frissit" && request.method === "POST") {
+      if (!tokenOk(request, env)) return json({ hiba: "érvénytelen admin token" }, 401);
+      let törzs;
+      try {
+        törzs = await request.json();
+      } catch (e) {
+        return json({ hiba: "hibás JSON" }, 400);
+      }
+      const { id, adat } = törzs || {};
+      if (!id || typeof id !== "string") return json({ hiba: "hiányzó id" }, 400);
+      if (!adat || typeof adat !== "object" || Array.isArray(adat)) return json({ hiba: "adat nem objektum" }, 400);
+      if (typeof adat.nev !== "string" || !adat.nev.trim()) return json({ hiba: "kötelező mező: név" }, 400);
+      const sor = await env.BESZOPTAK_DB.prepare(
+        "SELECT sorrend FROM bejegyzesek WHERE id = ?"
+      ).bind(id).first();
+      if (!sor) return json({ hiba: "nincs ilyen bejegyzés: " + id }, 404);
+      adat.id = id;
+      const szoveg = JSON.stringify(adat);
+      if (szoveg.length > 200000) return json({ hiba: "túl nagy adat" }, 400);
+      await env.BESZOPTAK_DB.prepare(
+        "INSERT OR REPLACE INTO bejegyzesek (id, sorrend, adat) VALUES (?, ?, ?)"
+      ).bind(id, sor.sorrend, szoveg).run();
+      return json({ ok: true, id });
+    }
+
     if (url.pathname === "/") {
       return new Response(
         "beszoptak.hu API – /api/adat · /kepek/<fajl>",

@@ -48,8 +48,32 @@ button { cursor:pointer; border:none; border-radius:8px; padding:9px 14px; font-
 .allapot { font-size:.75rem; color:var(--szurke); width:100%; text-align:right; }
 .allapot.hiba { color:#fca5a5; }
 .allapot.ok { color:#7ee2b8; }
+.szerk-gomb { background:#1c2632; color:var(--szoveg); border:1px solid var(--keret); }
+.szerk-gomb:hover { background:#243143; }
+.modal { position:fixed; inset:0; z-index:300; background:rgba(4,7,11,.9); display:flex; align-items:flex-start; justify-content:center; padding:30px 14px; overflow:auto; }
+.modal[hidden] { display:none; }
+.lap { background:var(--kartya); border:1px solid var(--keret); border-radius:14px; max-width:780px; width:100%; padding:20px; }
+.lap header { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px; }
+.lap h2 { font-size:1.1rem; overflow-wrap:anywhere; }
+.lapfej-gombok { display:flex; gap:8px; align-items:center; }
+.mezo { margin-bottom:12px; }
+.mezo textarea, .json-ta {
+  width:100%; min-height:72px; padding:9px 12px; border-radius:8px; border:1px solid var(--keret);
+  background:#0e141c; color:var(--szoveg); font:inherit; font-size:.9rem; resize:vertical;
+}
+.mezo select { width:100%; padding:9px 12px; border-radius:8px; border:1px solid var(--keret); background:#0e141c; color:var(--szoveg); font:inherit; }
+.mezo input[type=color] { width:46px; height:34px; padding:2px; border:1px solid var(--keret); background:#0e141c; border-radius:6px; vertical-align:middle; }
+.szin-pair { display:flex; gap:8px; align-items:center; }
+.szin-pair input[type=text] { flex:1; }
+.blokkcim { font-size:.78rem; color:var(--szurke); text-transform:uppercase; letter-spacing:.6px; margin:18px 0 10px; border-top:1px solid var(--keret); padding-top:14px; }
+.katlista { display:flex; flex-wrap:wrap; gap:8px 16px; }
+.katlista label { display:flex; gap:6px; align-items:center; margin:0; font-size:.88rem; color:var(--szoveg); cursor:pointer; }
+.kapsor { display:grid; grid-template-columns:1fr 1.4fr auto; gap:8px; margin-bottom:8px; align-items:center; }
+.gombok { display:flex; gap:8px; justify-content:flex-end; margin-top:16px; flex-wrap:wrap; }
+.hiba { color:#fca5a5; font-size:.85rem; margin-top:8px; min-height:1em; }
+.json-ta { min-height:360px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.8rem; }
 #eszkozsor { position:sticky; top:0; z-index:5; background:var(--hatter); padding:10px 0; }
-@media (max-width:640px){ .sor { grid-template-columns:44px 1fr; } .akkcio { grid-column:1/-1; justify-content:flex-start; } }
+@media (max-width:640px){ .sor { grid-template-columns:44px 1fr; } .akkcio { grid-column:1/-1; justify-content:flex-start; } .kapsor { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -84,6 +108,23 @@ button { cursor:pointer; border:none; border-radius:8px; padding:9px 14px; font-
   </div>
 </div>
 
+<div class="modal" id="szerk" hidden>
+  <div class="lap">
+    <header>
+      <h2 id="szerkCim">Szerkesztés</h2>
+      <div class="lapfej-gombok">
+        <button class="szerk-gomb kicsi" id="szerkJsonBtn">JSON nézet</button>
+        <button class="szerk-gomb kicsi" id="szerkBezar">Bezárás</button>
+        <button class="gomb kicsi" id="szerkMentes">Mentés</button>
+      </div>
+    </header>
+    <div id="szerkMezok"></div>
+    <div id="szerkKapcs"></div>
+    <textarea id="szerkJsonTa" class="json-ta" hidden spellcheck="false"></textarea>
+    <div class="hiba" id="szerkHiba"></div>
+  </div>
+</div>
+
 <script>
 (function () {
   const API = "https://beszoptak-api.ferkomes.workers.dev";
@@ -103,12 +144,29 @@ button { cursor:pointer; border:none; border-radius:8px; padding:9px 14px; font-
       .replace(/^-+|-+$/g, "") || "kep";
   }
 
+  function slotNeve(slot) {
+    if (!slot.kepek || !slot.kepek.length) return null;
+    const resz = slot.kepek[0].split("/").pop().split("?")[0];
+    return resz.replace(/-kis(\.\w+)$/, "$1").replace(/\.\w+$/, "");
+  }
+
   function alapNeve(slot) {
-    if (slot.kepek && slot.kepek.length) {
-      const resz = slot.kepek[0].split("/").pop().split("?")[0];
-      return resz.replace(/-kis(\.\w+)$/, "$1").replace(/\.\w+$/, "");
+    const regi = slotNeve(slot);
+    if (regi) {
+      const m = regi.match(/^(.*)-v\d+$/);
+      return m ? m[1] : regi;
     }
     return slot.tipus === "kartya" ? slug(slot.id) : slug(slot.nev);
+  }
+
+  // Csere uj fajlneve: verzio novelve, hogy az URL uj legyen (immutable cache miatt).
+  function feltoltesNeve(slot) {
+    const regi = slotNeve(slot);
+    if (!regi) return alapNeve(slot);
+    const m = regi.match(/^(.*)-v(\d+)$/);
+    const tiszta = m ? m[1] : regi;
+    const ver = m ? parseInt(m[2], 10) + 1 : 2;
+    return tiszta + "-v" + ver;
   }
 
   function slotokEpit(adat) {
@@ -131,7 +189,8 @@ button { cursor:pointer; border:none; border-radius:8px; padding:9px 14px; font-
   }
 
   function szures(sl) {
-    const keres = slug($("kereses").value);
+    const keresSzo = ($("kereses").value || "").trim().toLowerCase();
+    const keres = keresSzo ? slug(keresSzo) : "";
     const csakHianyzo = $("csakHianyzo").checked;
     return sl.filter(function (s) {
       if (csakHianyzo && s.kepek.length) return false;
@@ -169,9 +228,10 @@ button { cursor:pointer; border:none; border-radius:8px; padding:9px 14px; font-
       bal +
       '<div><div class="cim">' + s.cim + allapot + logoChip + "</div>" +
       '<div class="alcim2">' + s.alcim + "</div></div>" +
-      '<div class="akkcio">' +
+      '<div class="akkocio">' +
       '<input type="file" accept="image/*">' +
       '<button class="gomb kicsi">Feltöltés</button>' +
+      '<button class="szerkeszt szerk-gomb kicsi">Adatok</button>' +
       (kepek.length ? '<button class="torles">Törlés</button>' : "") +
       '<div class="allapot"></div></div>';
 
@@ -188,9 +248,10 @@ button { cursor:pointer; border:none; border-radius:8px; padding:9px 14px; font-
       allapotMezo.className = "allapot";
       feltolt(s, fajl)
         .then(function (uzenet) {
-          allapotMezo.textContent = uzenet;
-          allapotMezo.className = "allapot ok";
-          rajzol();
+          return betolt().then(function () {
+            $("uzenet").textContent = uzenet;
+            $("uzenet").style.color = "#7ee2b8";
+          });
         })
         .catch(function (hiba) {
           allapotMezo.textContent = "Hiba: " + hiba.message;
@@ -203,13 +264,23 @@ button { cursor:pointer; border:none; border-radius:8px; padding:9px 14px; font-
       torles.addEventListener("click", function () {
         torles.disabled = true;
         frissitSlot(s, [])
-          .then(function () { rajzol(); })
+          .then(function () {
+            return betolt().then(function () {
+              $("uzenet").textContent = "Kép törölve: " + s.cim;
+              $("uzenet").style.color = "#7ee2b8";
+            });
+          })
           .catch(function (hiba) {
             allapotMezo.textContent = "Hiba: " + hiba.message;
             allapotMezo.className = "allapot hiba";
             torles.disabled = false;
           });
       });
+    }
+
+    const szerkeszt = div.querySelector(".szerkeszt");
+    if (szerkeszt) {
+      szerkeszt.addEventListener("click", function () { bejegyzesMegnyit(s); });
     }
     return div;
   }
@@ -268,7 +339,7 @@ button { cursor:pointer; border:none; border-radius:8px; padding:9px 14px; font-
 
   async function feltolt(s, fajl) {
     if (!fajl.type.startsWith("image/")) throw new Error("csak képfájl engedélyezett");
-    const base = alapNeve(s);
+    const base = feltoltesNeve(s);
     const nagy = await meretez(fajl, 500);
     const kis = await meretez(fajl, 120);
     const fajlok = [
@@ -318,11 +389,342 @@ button { cursor:pointer; border:none; border-radius:8px; padding:9px 14px; font-
     }
   }
 
+  async function frissitBej(id, adat) {
+    const r = await fetch(API + "/api/adat/frissit", {
+      method: "POST", headers: keresHeaders(),
+      body: JSON.stringify({ id: id, adat: adat }),
+    });
+    const d = await r.json().catch(function () { return {}; });
+    if (!r.ok) throw new Error(d.hiba || ("HTTP " + r.status));
+    return d;
+  }
+
+  // ---- Adatszerkesztő (minden mező, nem csak kép) ----
+  let szerkBej = null;
+  let szerkJsonMod = false;
+  let jsonMezok = [];
+  const KIHAGY = { id: 1, kepek: 1, kapcsolatok: 1, kategoriak: 1, logo: 1 };
+  const SORREND = ["nev", "tipus", "fokategoria", "indok", "visszafizetett", "visszafizetett_szoveg", "osszeg_cimke"];
+
+  function deep(o) { return JSON.parse(JSON.stringify(o)); }
+  function findBej(id) { return ((ADAT && ADAT.bejegyzesek) || []).find(function (b) { return b.id === id; }); }
+  function mezoCim(k) { return k.replace(/_/g, " ").replace(/^./, function (c) { return c.toUpperCase(); }); }
+
+  function bejegyzesMegnyit(s) {
+    const b = findBej(s.id);
+    if (!b) return;
+    szerkBej = deep(b);
+    szerkJsonMod = false;
+    $("szerkCim").textContent = b.nev;
+    $("szerkJsonTa").value = "";
+    $("szerkJsonTa").hidden = true;
+    $("szerkJsonBtn").textContent = "JSON nézet";
+    $("szerkMezok").hidden = false;
+    $("szerkKapcs").hidden = false;
+    $("szerkHiba").textContent = "";
+    mezokRajzol();
+    $("szerk").hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+
+  function szerkesztBezar() {
+    $("szerk").hidden = true;
+    szerkBej = null;
+    jsonMezok = [];
+    document.body.style.overflow = "";
+  }
+
+  function mezoBlokk(k, v) {
+    const div = document.createElement("div");
+    div.className = "mezo";
+    const lab = document.createElement("label");
+    div.appendChild(lab);
+    if (typeof v === "boolean") {
+      lab.style.display = "flex";
+      lab.style.gap = "6px";
+      lab.style.alignItems = "center";
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.checked = v;
+      cb.addEventListener("change", function () { szerkBej[k] = cb.checked; });
+      lab.appendChild(cb);
+      lab.appendChild(document.createTextNode(mezoCim(k)));
+    } else {
+      lab.textContent = mezoCim(k);
+      let mezo;
+      if (typeof v === "number") {
+        mezo = document.createElement("input");
+        mezo.type = "number";
+        mezo.value = String(v);
+        mezo.addEventListener("input", function () { szerkBej[k] = Number(mezo.value); });
+      } else if (typeof v === "string" && v.length <= 90 && k !== "indok" && k !== "tipus") {
+        mezo = document.createElement("input");
+        mezo.type = "text";
+        mezo.value = v;
+        mezo.addEventListener("input", function () { szerkBej[k] = mezo.value; });
+      } else if (typeof v === "string") {
+        mezo = document.createElement("textarea");
+        mezo.value = v;
+        mezo.rows = k === "indok" ? 6 : 3;
+        mezo.addEventListener("input", function () { szerkBej[k] = mezo.value; });
+      } else {
+        mezo = document.createElement("textarea");
+        mezo.value = JSON.stringify(v, null, 2);
+        mezo.rows = 4;
+        mezo.spellcheck = false;
+        jsonMezok.push({ k: k, ta: mezo });
+      }
+      div.appendChild(mezo);
+    }
+    return div;
+  }
+
+  function fokategoriaMezo() {
+    const div = document.createElement("div");
+    div.className = "mezo";
+    const lab = document.createElement("label");
+    lab.textContent = "Fokategória";
+    div.appendChild(lab);
+    const sel = document.createElement("select");
+    const fokat = (ADAT && ADAT.fokategoriak) || {};
+    Object.keys(fokat).forEach(function (kulcs) {
+      const op = document.createElement("option");
+      op.value = kulcs;
+      op.textContent = (fokat[kulcs].rovid || fokat[kulcs].nev || kulcs) + " (" + kulcs + ")";
+      if (szerkBej.fokategoria === kulcs) op.selected = true;
+      sel.appendChild(op);
+    });
+    sel.value = szerkBej.fokategoria || "";
+    sel.addEventListener("change", function () { szerkBej.fokategoria = sel.value; });
+    div.appendChild(sel);
+    return div;
+  }
+
+  function kategoriakMezo() {
+    const div = document.createElement("div");
+    div.className = "mezo";
+    const lab = document.createElement("label");
+    lab.textContent = "Kategóriák";
+    div.appendChild(lab);
+    const lista = document.createElement("div");
+    lista.className = "katlista";
+    const kat = (ADAT && ADAT.kategoriak) || {};
+    const valasztott = szerkBej.kategoriak || [];
+    Object.keys(kat).forEach(function (kulcs) {
+      const l = document.createElement("label");
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.checked = valasztott.indexOf(kulcs) !== -1;
+      cb.addEventListener("change", function () {
+        const i = valasztott.indexOf(kulcs);
+        if (cb.checked && i === -1) valasztott.push(kulcs);
+        if (!cb.checked && i !== -1) valasztott.splice(i, 1);
+        szerkBej.kategoriak = valasztott;
+      });
+      l.appendChild(cb);
+      l.appendChild(document.createTextNode((kat[kulcs].nev || kulcs)));
+      lista.appendChild(l);
+    });
+    div.appendChild(lista);
+    return div;
+  }
+
+  function logoMezo() {
+    const div = document.createElement("div");
+    div.className = "mezo";
+    const lab = document.createElement("label");
+    lab.textContent = "Logó";
+    div.appendChild(lab);
+    if (!szerkBej.logo) {
+      const hozza = document.createElement("button");
+      hozza.className = "szerk-gomb kicsi";
+      hozza.textContent = "Logó hozzáadása (betűs monogram)";
+      hozza.addEventListener("click", function () {
+        szerkBej.logo = { betu: "", szin: "#38bdf8", szoveg: "" };
+        mezokRajzol();
+      });
+      div.appendChild(hozza);
+      return div;
+    }
+    const par = document.createElement("div");
+    par.className = "szin-pair";
+    const betu = document.createElement("input");
+    betu.type = "text";
+    betu.placeholder = "Betűk (pl. VL)";
+    betu.value = szerkBej.logo.betu || "";
+    betu.addEventListener("input", function () { szerkBej.logo.betu = betu.value; });
+    const szin = document.createElement("input");
+    szin.type = "color";
+    szin.value = /^#[0-9a-fA-F]{6}$/.test(szerkBej.logo.szin || "") ? szerkBej.logo.szin : "#38bdf8";
+    szin.addEventListener("input", function () { szerkBej.logo.szin = szin.value; });
+    const szoveg = document.createElement("input");
+    szoveg.type = "text";
+    szoveg.placeholder = "Felirat (tooltip)";
+    szoveg.value = szerkBej.logo.szoveg || "";
+    szoveg.addEventListener("input", function () { szerkBej.logo.szoveg = szoveg.value; });
+    par.append(betu, szin, szoveg);
+    div.appendChild(par);
+    const torol = document.createElement("button");
+    torol.className = "torles";
+    torol.textContent = "Logó törlése";
+    torol.style.marginTop = "6px";
+    torol.addEventListener("click", function () { delete szerkBej.logo; mezokRajzol(); });
+    div.appendChild(torol);
+    return div;
+  }
+
+  function kepekMegjelenit() {
+    const div = document.createElement("div");
+    div.className = "mezo";
+    const lab = document.createElement("label");
+    lab.textContent = "Képek (csak olvasható – a lenti sorokban módosítható)";
+    div.appendChild(lab);
+    const inp = document.createElement("input");
+    inp.type = "text";
+    inp.value = (szerkBej.kepek || []).join(", ");
+    inp.readOnly = true;
+    inp.style.color = "var(--szurke)";
+    div.appendChild(inp);
+    return div;
+  }
+
+  function mezokRajzol() {
+    const el = $("szerkMezok");
+    el.innerHTML = "";
+    jsonMezok = [];
+    const kulcsok = Object.keys(szerkBej).filter(function (k) { return !KIHAGY[k]; });
+    kulcsok.sort(function (a, b) {
+      const ia = SORREND.indexOf(a), ib = SORREND.indexOf(b);
+      return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+    });
+    kulcsok.forEach(function (k) {
+      if (k === "fokategoria") el.appendChild(fokategoriaMezo());
+      else el.appendChild(mezoBlokk(k, szerkBej[k]));
+    });
+    el.appendChild(kategoriakMezo());
+    el.appendChild(logoMezo());
+    el.appendChild(kepekMegjelenit());
+    kapcsRajzol();
+  }
+
+  function kapcsRajzol() {
+    const el = $("szerkKapcs");
+    el.innerHTML = "";
+    const cim = document.createElement("div");
+    cim.className = "blokkcim";
+    cim.textContent = "Kapcsolatok (" + (szerkBej.kapcsolatok || []).length + ")";
+    el.appendChild(cim);
+    (szerkBej.kapcsolatok || []).forEach(function (k, i) {
+      const row = document.createElement("div");
+      row.className = "kapsor";
+      const n = document.createElement("input");
+      n.type = "text";
+      n.placeholder = "Név";
+      n.value = k.nev || "";
+      n.addEventListener("input", function () { k.nev = n.value; });
+      const sz = document.createElement("input");
+      sz.type = "text";
+      sz.placeholder = "Szerep / leírás";
+      sz.value = k.szerep || "";
+      sz.addEventListener("input", function () { k.szerep = sz.value; });
+      const t = document.createElement("button");
+      t.className = "torles";
+      t.textContent = "Törlés";
+      t.addEventListener("click", function () {
+        szerkBej.kapcsolatok.splice(i, 1);
+        kapcsRajzol();
+      });
+      row.append(n, sz, t);
+      el.appendChild(row);
+    });
+    const hozza = document.createElement("button");
+    hozza.className = "szerk-gomb kicsi";
+    hozza.textContent = "+ Kapcsolat hozzáadása";
+    hozza.style.marginTop = "4px";
+    hozza.addEventListener("click", function () {
+      if (!szerkBej.kapcsolatok) szerkBej.kapcsolatok = [];
+      szerkBej.kapcsolatok.push({ nev: "új kapcsolat", szerep: "", kepek: [] });
+      kapcsRajzol();
+    });
+    el.appendChild(hozza);
+  }
+
+  function jsonCsere() {
+    if (!szerkBej) return;
+    const ta = $("szerkJsonTa");
+    if (!szerkJsonMod) {
+      ta.value = JSON.stringify(szerkBej, null, 2);
+      $("szerkMezok").hidden = true;
+      $("szerkKapcs").hidden = true;
+      ta.hidden = false;
+      $("szerkJsonBtn").textContent = "Űrlap nézet";
+      szerkJsonMod = true;
+      $("szerkHiba").textContent = "";
+    } else {
+      let uj;
+      try {
+        uj = JSON.parse(ta.value);
+        if (!uj || typeof uj !== "object" || Array.isArray(uj)) throw new Error("objektum szükséges");
+      } catch (e) {
+        $("szerkHiba").textContent = "Hibás JSON: " + e.message;
+        return;
+      }
+      uj.id = szerkBej.id;
+      szerkBej = uj;
+      jsonMezok = [];
+      mezokRajzol();
+      ta.hidden = true;
+      $("szerkMezok").hidden = false;
+      $("szerkKapcs").hidden = false;
+      $("szerkJsonBtn").textContent = "JSON nézet";
+      szerkJsonMod = false;
+      $("szerkHiba").textContent = "";
+    }
+  }
+
+  function szerkesztMentes() {
+    if (!szerkBej) return;
+    try {
+      jsonMezok.forEach(function (m) {
+        const sz = m.ta.value.trim();
+        szerkBej[m.k] = sz ? JSON.parse(sz) : null;
+      });
+    } catch (e) {
+      $("szerkHiba").textContent = "Hibás JSON a(z) '" + mezoCim(jsonMezok.map(function (m) { return m.k; }).join("?")) + "' mezőben: " + e.message;
+      return;
+    }
+    if (!String(szerkBej.nev || "").trim()) {
+      $("szerkHiba").textContent = "A név kötelező.";
+      return;
+    }
+    const gomb = $("szerkMentes");
+    gomb.disabled = true;
+    $("szerkHiba").textContent = "";
+    frissitBej(szerkBej.id, szerkBej)
+      .then(function () { return betolt(); })
+      .then(function () {
+        szerkesztBezar();
+        gomb.disabled = false;
+      })
+      .catch(function (hiba) {
+        $("szerkHiba").textContent = "Hiba: " + hiba.message;
+        gomb.disabled = false;
+      });
+  }
+
+  $("szerkBezar").addEventListener("click", szerkesztBezar);
+  $("szerkMentes").addEventListener("click", szerkesztMentes);
+  $("szerkJsonBtn").addEventListener("click", jsonCsere);
+  $("szerk").addEventListener("click", function (e) { if (e.target === $("szerk")) szerkesztBezar(); });
+
   $("belep").addEventListener("click", belepek);
   $("token").addEventListener("keydown", function (e) { if (e.key === "Enter") belepek(); });
   $("kereses").addEventListener("input", rajzol);
   $("csakHianyzo").addEventListener("change", rajzol);
   $("ujratoltes").addEventListener("click", function () { betolt().catch(function (e) { alert(e.message); }); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && $("szerk") && !$("szerk").hidden) szerkesztBezar();
+  });
 
   if (TOKEN) {
     betolt()

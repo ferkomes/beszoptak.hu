@@ -1,6 +1,7 @@
 // API (D1) -> js/data.js import (admin-feltoltesek atvezetese a repoba)
 // Hasznalat: node scripts/import-db.mjs [--force]
 import fs from "node:fs";
+import path from "node:path";
 import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
@@ -51,3 +52,26 @@ const szoveg =
 
 fs.writeFileSync(CEL, szoveg);
 console.log("OK: " + adat.bejegyzesek.length + " bejegyzes -> js/data.js");
+
+// Hianyzo kepek letoltese az R2-bol (admin feltoltesek), hogy a repo is teljes legyen.
+const origin = new URL(API).origin;
+const utvonalak = new Set();
+adat.bejegyzesek.forEach((b) => {
+  (b.kepek || []).forEach((k) => utvonalak.add(k));
+  (b.kapcsolatok || []).forEach((c) => (c.kepek || []).forEach((k) => utvonalak.add(k)));
+});
+let letoltott = 0;
+for (const u of utvonalak) {
+  if (!u.startsWith("images/")) continue;
+  const cel = fileURLToPath(new URL("../" + u, import.meta.url));
+  if (fs.existsSync(cel)) continue;
+  const r = await fetch(origin + "/kepek/" + u.slice("images/".length));
+  if (!r.ok) {
+    console.error("NEM SIKERULT letolteni:", u, r.status);
+    continue;
+  }
+  fs.mkdirSync(path.dirname(cel), { recursive: true });
+  fs.writeFileSync(cel, Buffer.from(await r.arrayBuffer()));
+  letoltott++;
+}
+console.log("letoltott hianyzo kepek:", letoltott);
